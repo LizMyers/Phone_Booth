@@ -5,10 +5,9 @@ LEGAL NOTICES GO HERE
 Distributed on AS-IS basis, not responible/liable for anything.
 Redistribution strictly prohibited.
 REMOVING THIS MESSAGE STRICTLY PROHIBITED
-version 1.5 Friday PM
+version 1.5 Friday 18:42PM
 ---------------------------
-Force Push 18:02 here we go
-Test TEST 09
+I wonder if this will now automate as it should do
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 var toCountry;
