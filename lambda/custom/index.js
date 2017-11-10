@@ -5,9 +5,9 @@ LEGAL NOTICES GO HERE
 Distributed on AS-IS basis, not responible/liable for anything.
 Redistribution strictly prohibited.
 REMOVING THIS MESSAGE STRICTLY PROHIBITED
-version 1.4 Thurs PM
-13:20PM trying to commit to github
-13:27 think I've set this up properly
+version 1.5 Friday PM
+---------------------------
+13:36 think I've set this up properly - wheeeeeeee
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 var toCountry;
