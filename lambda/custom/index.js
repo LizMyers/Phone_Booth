@@ -6,6 +6,8 @@ Distributed on AS-IS basis, not responible/liable for anything.
 Redistribution strictly prohibited.
 REMOVING THIS MESSAGE STRICTLY PROHIBITED
 version 1.4 Thurs PM
+13:20PM trying to commit to github
+13:27 think I've set this up properly
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 var toCountry;
@@ -379,7 +381,7 @@ var handlers = {
         }//end switch
       }//end if
 
-    //if (intentObj.slots.fromCountry.confirmationStatus !== 'CONFIRMED') {
+    if (intentObj.slots.fromCountry.confirmationStatus !== 'CONFIRMED') {
     //if (intentObj.slots.fromCountry.value === undefined) {
         if (intentObj.slots.fromCountry.confirmationStatus !== 'DENIED') {
             // Slot value is not confirmed
