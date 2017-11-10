@@ -379,7 +379,7 @@ var handlers = {
         }//end switch
       }//end if
 
-    if (intentObj.slots.fromCountry.confirmationStatus !== 'CONFIRMED') {
+    //if (intentObj.slots.fromCountry.confirmationStatus !== 'CONFIRMED') {
     //if (intentObj.slots.fromCountry.value === undefined) {
         if (intentObj.slots.fromCountry.confirmationStatus !== 'DENIED') {
             // Slot value is not confirmed
