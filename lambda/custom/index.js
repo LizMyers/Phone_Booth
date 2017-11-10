@@ -8,7 +8,7 @@ REMOVING THIS MESSAGE STRICTLY PROHIBITED
 version 1.5 Friday PM
 ---------------------------
 Force Push 16:30 here we go
-
+Get these two connected now
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 var toCountry;
