@@ -1,0 +1,118 @@
+{
+  "skillManifest": {
+    "publishingInformation": {
+      "locales": {
+        "de-DE": {
+          "summary": "Telefonzelle ist Ihr Assistent für internationale Anrufe - schnell und einfach.",
+          "examplePhrases": [
+            "Alexa, frage telefonzelle nach der Vorwahl für Frankreich.",
+            "Alexa, frage telefonzelle wie rufe ich England an?",
+            "Alexa, frage telefonzelle nach der Landesvorwahl von Italien."
+          ],
+          "keywords": [
+            "international",
+            "anruf",
+            "global",
+            "vorwahl",
+            "landesvorwahl"
+          ],
+          "name": "Telefonzelle",
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoiKzZqak5KMXdTRHNheVhvdjhqbnc2SWFYaEJLU3Z1eGxLNXFhMyt0a1NQNEVYTCtqM1c5ZGV6R1lGODM5YUVJRXJvNktoelg2RUVoM1VzT3VvRkNPeHZYdjZ1RGp6RzRuM1ZUdU5jY1dYUXlJbnI2bjI4ZmxtY09MZnMwYkxnWjEiLCJpdiI6IlZtOS9xaDZQdGpiQkxWcTZPWUplU3c9PSIsInYiOjF9",
+          "description": "Telefonzelle hilft Ihen bei internationalen Anrufe auf drei Weisen: 1) Frage nach der Landesvorwahl von 200 Länder; 2) Gebe die Landesvorwahl ein und bekomme den Name des Landes; 3) Gebrauchsfûhrung u. Hinweisen zum internationalen anrufen.Enable und behalte dieses skill - es ist sehr nutzvoll und wir arbeiten ständig um es noch wertvoller zu machen.",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoiOWVRMjZBckM5c3ozZE9xbVp2Q1pHVC9rVExYajVRTHAwVjJHY1h3T01MSnZBZ094Y3BPNk5DTDhyS0M4d1hVWDFFQ0hYZ3JLTlhDZzJWSXFzSHUrRzU2ckt2OW96ZDBNZkJwbVBMVzVldXdnYTl4UjlpWjA2VU0xeFpuOWNhdDlndkZuU28wbmhMOGhZYmJRT3ZtWTlBPT0iLCJpdiI6Im95NDBuZHBJQkhZZ1c4UU1QNWEyeXc9PSIsInYiOjF9"
+        },
+        "en-US": {
+          "summary": "Phone Box helps you place international calls quickly and easily.",
+          "examplePhrases": [
+            "Alexa, ask phone booth how do I call Great Britain?",
+            "Alexa, ask phone booth what is the dialing code for Luxembourg?",
+            "Alexa, ask phone booth which country has the dialing code 91 ?"
+          ],
+          "keywords": [
+            "international",
+            "call",
+            "global",
+            "call",
+            "country",
+            "code",
+            "dialing",
+            "code",
+            "calling",
+            "prefix"
+          ],
+          "name": "Phone Booth",
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoieElHR2FlZFBKTHF4ek5Vd1ozcW1DK3FVZE4vZjdIZmgvYktWRjI2Ry9TQXZlL0RybVI5eGhjdkdFemtUOTBvVTc4cXJsL3g5ZGNYSHBYOWtRYXQ3bTArb2VEdlpEcng5bGdwUDBuS0lWRWZhSlJrTHVaRE5NWldLWVFuWGFUdFIiLCJpdiI6Im9HVVJWMWoxNCtZZnB6bEl6RS9LUlE9PSIsInYiOjF9",
+          "description": "Phone Box is a simple utility which provides three things: 1) Lookup dialing codes for any country in the world; 2) Reverse Lookup - supply the country code and the skill will tell you which country is calling; 3) Complete dialing instructions for country-to-country calls on mobile or land lines. You'll want to enable and KEEP this skill active, because we're adding more helpful features and are committed to making this as useful as can be.",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoidjhNUG9jYkgxQzNCa2RhTE9QU0ovWGd2ZklleE1KUmUxZlRBeE1NN3g2NkluRk1FbEI3MWFSc0ZoMmo3S2RqbGNhM1dwZkdoanVuUlZNL2VkYkZocWFlZTRMNnFhWFFoRnBvblZtdlZtbnM2U2VZNFR1emlGWld4UGIvaXBqSHJLQ25MZFJRSGJUa1Z4dnNnUytyTERnPT0iLCJpdiI6InQraUJ0d3BRbWNFZ3ZjZFZWVzJ3N2c9PSIsInYiOjF9"
+        },
+        "en-IN": {
+          "summary": "Phone Box helps you place international calls quickly and easily.",
+          "examplePhrases": [
+            "Alexa, ask phone box how do I call Great Britain?",
+            "Alexa, ask phone box what is the dialing code for Luxembourg?",
+            "Alexa, which country has the dialing code 352?"
+          ],
+          "keywords": [
+            "international",
+            "call",
+            "global",
+            "call",
+            "country",
+            "code",
+            "dialing",
+            "code",
+            "calling",
+            "prefix"
+          ],
+          "name": "Phone Box",
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoiaVM4UUt1WlVyWnJIR3JselQxQ2pzVDd3QTltTnp5YmhteWJYaW1zT25UOTFteUNPby9WWU5JYmViWU5vdTVpQjlxVnNIR0lqaHhSTlhpWjVlZFBwRGJlZDczNmZOTkN0dllKYW5TVHBSWjdOcFZ6dDRsTGdMejZ6eThqRVhpeXYiLCJpdiI6InhUNktpZzY2dTBBWE5GeE1wRU5BRGc9PSIsInYiOjF9",
+          "description": "Phone Box is a simple utility which provides three things: 1) Lookup dialing codes for any country in the world; 2) Reverse Lookup - supply the country code and the skill will tell you which country is calling; 3) Complete dialing instructions for country-to-country calls on mobile or land lines. You'll want to enable and KEEP this skill active, because we're adding more helpful features and are committed to making this as useful as can be.",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoiajZBc3M2VGlMTFNHMlRMaGJPTWRxR3M4WE0xanVsVW40RVc3L0duaWxKakt1eElkaXFJWVptWkF4TWR6UDF3ZFkzM01SY09GSmQxNklLcU9TUVNxNTAzZzhxejJSaCt1SzZXY01MMnFzNktuWkIwUnNlMVZqWFRuVmZlOG4zQjVseVlOWGpUOWd2V3lBWVFRY2d5KzFnPT0iLCJpdiI6IkRDeTlSYjdQTDVDd3FzelZYbkNSTGc9PSIsInYiOjF9"
+        },
+        "en-GB": {
+          "summary": "Phone Box helps you place international calls quickly and easily.",
+          "examplePhrases": [
+            "Alexa, ask phone box how do I call Australia?",
+            "Alexa, ask phone box what is the dialing code for Luxembourg?",
+            "Alexa, ask phone box which country has dialing code 91?"
+          ],
+          "keywords": [
+            "international",
+            "call",
+            "global",
+            "call",
+            "country",
+            "code",
+            "dialing",
+            "code",
+            "calling",
+            "prefix"
+          ],
+          "name": "Phone Box",
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoiQWx5Z21wVCszZjlQby9hRzJhaUpDMDNLZ0o3UUwrZzlqYVgvcnJreFgrc1BQeDZxZW9rZmVpc0psK1ZsYUYwNk9heGw3TEh6bEFWcFBsZFFGMXhicDBYVmpsZWV0SUs4d2U0cEhWMFZMT1dLL0VwOHJ5QzV5T0lXdlVhSk95RDgiLCJpdiI6Ik1QeGN3Z0tDU3RmN3VlNFhaalFFSXc9PSIsInYiOjF9",
+          "description": "Phone Box is a simple utility which provides three things: 1) Lookup dialing codes for any country in the world; 2) Reverse Lookup - supply the country code and the skill will tell you which country is calling; 3) Complete dialing instructions for country-to-country calls on mobile or land lines. You'll want to enable and KEEP this skill active, because we're adding more helpful features and are committed to making this as useful as can be.",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926/images/eyJkIjoiQzRQcWZJcXEzbU45ZFBvWE03aVI3Sm5KSEpOdTRwT1lxZCsxczE1eUt1SU9XVHM0anZUNkEyWUg5cFB3Wm9ZNGZhQUxHbllzT003bHErWnE0eUlkM1NWZkQ4Rk5OaUl2L3NNZUE5MVFXdnhQV3kwdk0zQWpXV2RINWdHOTVFdW1qM2l1QlBoRWt5OUViaXlUSml3UXRnPT0iLCJpdiI6IjhJaVd1NUtGaXZyWTJDMGpuaVpYRWc9PSIsInYiOjF9"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "None",
+      "category": "EDUCATION_AND_REFERENCE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom"
+        }
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}
