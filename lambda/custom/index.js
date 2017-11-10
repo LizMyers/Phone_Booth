@@ -7,8 +7,8 @@ Redistribution strictly prohibited.
 REMOVING THIS MESSAGE STRICTLY PROHIBITED
 version 1.5 Friday PM
 ---------------------------
-Force Push 17:16 here we go
-THIRD TIME LUCKY
+Force Push 17:43 here we go
+All configured now
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 var toCountry;
