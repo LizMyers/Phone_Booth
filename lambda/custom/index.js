@@ -7,7 +7,7 @@ Redistribution strictly prohibited.
 REMOVING THIS MESSAGE STRICTLY PROHIBITED
 version 1.5 Friday PM
 ---------------------------
-13:36 think I've set this up properly - wheeeeeeee
+Force Push 15:53
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 var toCountry;
@@ -357,6 +357,9 @@ var handlers = {
         var fromCountry=this.event.request.intent.slots.fromCountry.value;
         //console.log("LINE 354:fromCountry: " + fromCountry);
 
+
+    //if the user hasn't said where they're calling from, use locale to suggest region
+    //NOTE: option: ask user to identify region and zip code when enbling the skill (LM: does this create more friction?)
     if (intentObj.slots.fromCountry.value === undefined) {
         switch(locale){
             case "en-US":
@@ -372,7 +375,7 @@ var handlers = {
                 intentObj.slots.fromCountry.value = "India";
                 break;
             case "de-DE":
-                fromCountry = "the EU";
+                fromCountry = "The EU";
                 intentObj.slots.fromCountry.value = "The EU";
                 break;
             default:
@@ -381,9 +384,8 @@ var handlers = {
         }//end switch
       }//end if
 
-    if (intentObj.slots.fromCountry.confirmationStatus !== 'CONFIRMED') {
-    //if (intentObj.slots.fromCountry.value === undefined) {
-        if (intentObj.slots.fromCountry.confirmationStatus !== 'DENIED') {
+    if (intentObj.slots.fromCountry.confirmationStatus !== 'DENIED') {
+        if (intentObj.slots.fromCountry.confirmationStatus !== 'CONFIRMED') {
             // Slot value is not confirmed
             var slotToConfirm = 'fromCountry';
             var speechOutput = 'You\'re calling from ' + intentObj.slots.fromCountry.value + ', right?';
