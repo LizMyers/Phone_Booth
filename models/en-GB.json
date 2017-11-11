@@ -1,1406 +1,1604 @@
+
+/*DISCLAIMER + COPYRIGHT GO HERE
+Last updated: 11-Nov-17 13:27 en-GB
+By Liz Myers*/
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "phone box",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": [
-            "Great thanks",
-            "Later Dude",
-            "No that's all",
-            "No thanks",
-            "Nope",
-            "Not now",
-            "No",
-            "Quiet",
-            "Hush",
-            "Okey Dokey",
-            "See you later",
-            "later alligator",
-            "no thank you",
-            "nothing thanks",
-            "nothing",
-            "nothing right now"
-          ]
-        },
-        {
-          "name": "getCountryCodeIntent",
-          "slots": [
-            {
-              "name": "countryName",
-              "type": "LIST_OF_COUNTRIES"
+  "languageModel": {
+    "types": [
+      {
+        "name": "LIST_OF_COUNTRIES",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "afghanistan",
+              "synonyms": []
             }
-          ],
-          "samples": [
-            "get the country code for {countryName}",
-            "find the country code for {countryName}",
-            "find the dialing code for {countryName}",
-            "get the dialing code for {countryName}",
-            "get the prefix for {countryName}",
-            "find the prefix for {countryName}",
-            "find the code for {countryName}",
-            "tell me the code for {countryName}",
-            "tell me the dialing code for {countryName}",
-            "tell me the country code for {countryName}",
-            "tell me about {countryName}"
-          ]
-        },
-        {
-          "name": "getCountryNameIntent",
-          "slots": [
-            {
-              "name": "dialingCode",
-              "type": "AMAZON.NUMBER"
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "albania",
+              "synonyms": []
             }
-          ],
-          "samples": [
-            "what country has the dialing code {dialingCode}",
-            "what country matches the dialing code {dialingCode}",
-            "which country has the prefix {dialingCode}",
-            "which country as the country code {dialingCode}",
-            "tell me about {dialingCode}",
-            "tell me something about {dialingCode}",
-            "get me the info for {dialingCode}",
-            "what do you know about {dialingCode}",
-            "how about {dialingCode}",
-            "where does {dialingCode} come from",
-            "where is {dialingCode} from"
-          ]
-        },
-        {
-          "name": "getFullPrefixIntent",
-          "slots": [
-            {
-              "name": "countryName",
-              "type": "LIST_OF_COUNTRIES",
-              "samples": [
-                "I want to call {countryName}",
-                "{countryName}",
-                "I said {countryName}"
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "algeria",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "andorra",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "angola",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "antigua",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "argentina",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "armenia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "australia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "asutria",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "azerbaijan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "nahrain",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "bangladesh",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "barbados",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "belarus",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "belgium",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "belize",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "benin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "bhutan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "bolivia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "bosnia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "botswana",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "brazil",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "brunei",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "bulgaria",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "burkina faso",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "burundi",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cambodia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cameroon",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "canada",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cape verde",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "chad",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "chile",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "china",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "colombia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cook islands",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "costa rica",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cote d'ivoire",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "croatia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cuba",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cyprus",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "denmark",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "djibouti",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "dominica",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "east timor",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "ecuador",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "egypt",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "el salvador",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "equatorial guinea",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "eritrea",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "estonia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "fifi",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "finland",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "france",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "gabon",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "georgia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "germany",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "ghana",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "great britain",
+              "synonyms": [
+                "england",
+                "the u.k.",
+                "britain"
               ]
             }
-          ],
-          "samples": [
-            "Tell me how to call {countryName}",
-            "Show me how to call {countryName}",
-            "How do I call {countryName}",
-            "How do I make a call to {countryName}",
-            "How do I place a call to {countryName}",
-            "How do I dial {countryName}",
-            "Show me how to dial {countryName}",
-            "Show me how to reach {countryName}",
-            "Tell me how to reach {countryName}",
-            "Teach me how to call {countryName}",
-            "Teach me how to dial {countryName}",
-            "How to call {countryName}",
-            "How to dial {countryName}",
-            "How to ring {countryName}",
-            "How to phone {countryName}"
-          ]
-        }
-      ],
-      "types": [
-        {
-          "values": [
-            {
-              "name": {
-                "value": "afghanistan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "albania",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "algeria",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "andorra",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "angola",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "antigua",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "argentina",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "armenia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "australia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "asutria",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "azerbaijan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "nahrain",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "bangladesh",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "barbados",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "belarus",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "belgium",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "belize",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "benin",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "bhutan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "bolivia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "bosnia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "botswana",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "brazil",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "brunei",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "bulgaria",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "burkina faso",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "burundi",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "cambodia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "cameroon",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "canada",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "cape verde",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "chad",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "chile",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "china",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "colombia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "cook islands",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "costa rica",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "cote d'ivoire",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "croatia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "cuba",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "cyprus",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "denmark",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "djibouti",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "dominica",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "east timor",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "ecuador",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "egypt",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "el salvador",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "equatorial guinea",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "eritrea",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "estonia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "fifi",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "finland",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "france",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "gabon",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "georgia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "germany",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "ghana",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "great britain",
-                "synonyms": [
-                  "england",
-                  "the u.k.",
-                  "britain"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "greece",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "greenland",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "grenada",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "guatamala",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "guinea",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "guinea-bissau",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "guyana",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "haiti",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "honduras",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "hungary",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "iceland",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "india",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "indonesia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "iran",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "iraq",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "ireland",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "israel",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "italy",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "jamaica",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "japan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "jordan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "kazakhstan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "kenya",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "kiribati",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "kosovo",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "kuwait",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "kyrgyzstan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "laos",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "latvia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "lebanon",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "lesotho",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "liberia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "libya",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "lichtenstein",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "lithuania",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "luxembourg",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "macedonia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "madagascar",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "malawi",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "malaysia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "maldives",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "mali",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "malta",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "mauritania",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "mauritius",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "mexico",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "micronesia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "moldova",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "monaco",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "mongolia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "montenegro",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "morocco",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "mozambique",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "myanmar",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "namibia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "nauru",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "nepal",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "new zealand",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "nicaragua",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "niger",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "nigeria",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "niue",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "north korea",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "norway",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "oman",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "pakistan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "palau",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "panama",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "papua new guinea",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "paraguay",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "peru",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "poland",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "portugal",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "qatar",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "romania",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "russia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "rwanda",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "sant kitts",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "saint lucia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "saint vincent",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "samoa",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "san marino",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "sao tome and principe",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "saudi arabia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "senegal",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "serbia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "sierra leone",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "singapore",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "slovakia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "slovenia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "somalia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "south africa",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "south korea",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "south sudan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "spain",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "sri lanka",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "sudan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "suriname",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "swaziland",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "sweden",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "switzerland",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "syria",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "taiwan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "tajikistan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "tanzania",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "thailand",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the bahamas",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the central african republic",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the comoros",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the congo",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the czech republic",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the dominican republic",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the gambia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the marshall islands",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the netherlands",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the philippines",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the republic of the congo",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the seychelles",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the solomon islands",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the united arab emirates",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "the united states",
-                "synonyms": [
-                  "the u.s.",
-                  "the states",
-                  "america",
-                  "north america"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "the vatican",
-                "synonyms": [
-                  "vatican city"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "thiopio",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "togo",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "tonga",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "trinidad",
-                "synonyms": [
-                  "trinidad and tobago"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "tunisia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "turkey",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "turkmenistan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "tuvalu",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "uganda",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "ukraine",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "uruguay",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "uzbekistan",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "vanuatu",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "venezuela",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "vietnam",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "western sahara",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "yemen",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "zambia",
-                "synonyms": []
-              }
-            },
-            {
-              "name": {
-                "value": "zimbabwe",
-                "synonyms": []
-              }
-            }
-          ],
-          "name": "LIST_OF_COUNTRIES"
-        }
-      ]
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "getCountryCodeIntent",
-          "confirmationRequired": true,
-          "prompts": {
-            "confirmation": "Confirm.Intent-getCountryCodeIntent"
           },
-          "slots": [
-            {
-              "name": "countryName",
-              "type": "LIST_OF_COUNTRIES",
-              "elicitationRequired": false,
-              "confirmationRequired": false
+          {
+            "id": null,
+            "name": {
+              "value": "greece",
+              "synonyms": []
             }
-          ]
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "greenland",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "grenada",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "guatamala",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "guinea",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "guinea-bissau",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "guyana",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "haiti",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "honduras",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "hungary",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "iceland",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "india",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "indonesia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "iran",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "iraq",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "ireland",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "israel",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "italy",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "jamaica",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "japan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "jordan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "kazakhstan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "kenya",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "kiribati",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "kosovo",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "kuwait",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "kyrgyzstan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "laos",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "latvia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "lebanon",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "lesotho",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "liberia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "libya",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "lichtenstein",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "lithuania",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "luxembourg",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "macedonia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "madagascar",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "malawi",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "malaysia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "maldives",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "mali",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "malta",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "mauritania",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "mauritius",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "mexico",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "micronesia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "moldova",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "monaco",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "mongolia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "montenegro",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "morocco",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "mozambique",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "myanmar",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "namibia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "nauru",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "nepal",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "new zealand",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "nicaragua",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "niger",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "nigeria",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "niue",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "north korea",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "norway",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "oman",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "pakistan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "palau",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "panama",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "papua new guinea",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "paraguay",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "peru",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "poland",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "portugal",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "qatar",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "romania",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "russia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "rwanda",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "sant kitts",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "saint lucia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "saint vincent",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "samoa",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "san marino",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "sao tome and principe",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "saudi arabia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "senegal",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "serbia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "sierra leone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "singapore",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "slovakia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "slovenia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "somalia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "south africa",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "south korea",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "south sudan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "spain",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "sri lanka",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "sudan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "suriname",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "swaziland",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "sweden",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "switzerland",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "syria",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "taiwan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "tajikistan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "tanzania",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "thailand",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the bahamas",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the central african republic",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the comoros",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the congo",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the czech republic",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the dominican republic",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the gambia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the marshall islands",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the netherlands",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the philippines",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the republic of the congo",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the seychelles",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the solomon islands",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the united arab emirates",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the united states",
+              "synonyms": [
+                "the u.s.",
+                "the states",
+                "america",
+                "north america"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the vatican",
+              "synonyms": [
+                "vatican city"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "thiopio",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "togo",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "tonga",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "trinidad",
+              "synonyms": [
+                "trinidad and tobago"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "tunisia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "turkey",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "turkmenistan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "tuvalu",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "uganda",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "ukraine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "uruguay",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "uzbekistan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "vanuatu",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "venezuela",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "vietnam",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "western sahara",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "yemen",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "zambia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "zimbabwe",
+              "synonyms": []
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": [
+          "Great thanks",
+          "Later Dude",
+          "No that's all",
+          "No thanks",
+          "Nope",
+          "Not now",
+          "No",
+          "Quiet",
+          "Hush",
+          "Okey Dokey",
+          "See you later",
+          "later alligator",
+          "no thank you",
+          "nothing thanks",
+          "nothing",
+          "nothing right now"
+        ]
+      },
+      {
+        "name": "getCountryCodeIntent",
+        "samples": [
+          "find the country code for {toCountry}",
+          "find the dialing code for {toCountry}",
+          "get the dialing code for {toCountry}",
+          "get the prefix for {toCountry}",
+          "find the prefix for {toCountry}",
+          "find the code for {toCountry}",
+          "tell me the code for {toCountry}",
+          "tell me the dialing code for {toCountry}",
+          "tell me the country code for {toCountry}",
+          "what is the dialing code for {toCountry}",
+          "what is the country code for {toCountry}",
+          "what the dialing code for {toCountry} is",
+          "what the country code for {toCountry} is",
+          "what the prefix for {toCountry} is"
+        ],
+        "slots": [
+          {
+            "name": "toCountry",
+            "type": "LIST_OF_COUNTRIES"
+          }
+        ]
+      },
+      {
+        "name": "getCountryNameIntent",
+        "samples": [
+          "what country has the dialing code {dialingCode}",
+          "what country matches the dialing code {dialingCode}",
+          "which country has the prefix {dialingCode}",
+          "which country as the country code {dialingCode}",
+          "tell me about {dialingCode}",
+          "tell me something about {dialingCode}",
+          "get me the info for {dialingCode}",
+          "what do you know about {dialingCode}",
+          "how about {dialingCode}",
+          "where does {dialingCode} come from",
+          "where is {dialingCode} from",
+          "what country does the dialing code {dialingCode} belong to",
+          "what country does {dialingCode} belong to",
+          "do you recognize dialing code {dialingCode}",
+          "tell me about dialing code {dialingCode}",
+          "do you recognize {dialingCode}",
+          "do you know {dialingCode}",
+          "do you recognize calling code {dialingCode}",
+          "tell me if you recognize this number {dialingCode}",
+          "what country has the code {dialingCode}",
+          "where {dialingCode} is from",
+          "where plus {dialingCode} is from",
+          "where does the prefix {dialingCode}",
+          "where does the prefix plus {dialingCode} come from",
+          "what country has {dialingCode}",
+          "what country has country code {dialingCode}",
+          "what country has calling code {dialingCode}",
+          "which country has {dialingCode}",
+          "which country has dialing code {dialingCode}",
+          "which country has country code {dialingCode}"
+        ],
+        "slots": [
+          {
+            "name": "dialingCode",
+            "type": "AMAZON.NUMBER"
+          }
+        ]
+      },
+      {
+        "name": "getFullPrefixIntent",
+        "samples": [
+          "{toCountry} do I call {toCountry}",
+          "I want to call {toCountry}",
+          "Show me how to call {toCountry}",
+          "Tell me how to call {toCountry}",
+          "How do I call {toCountry}",
+          "how to call {toCountry}",
+          "how do i call {toCountry} from {fromCountry}",
+          "how to call {toCountry} from {fromCountry}",
+          "how to dial {toCountry} from {fromCountry}",
+          "how to dial {toCountry}"
+        ],
+        "slots": [
+          {
+            "name": "fromCountry",
+            "type": "LIST_OF_COUNTRIES"
+          },
+          {
+            "name": "toCountry",
+            "type": "LIST_OF_COUNTRIES"
+          }
+        ]
+      }
+    ],
+    "invocationName": "phone booth"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Where are you calling from?"
         },
         {
-          "name": "getFullPrefixIntent",
-          "confirmationRequired": true,
-          "prompts": {
-            "confirmation": "Confirm.Intent-getFullPrefixIntent"
-          },
-          "slots": [
-            {
-              "name": "countryName",
-              "type": "LIST_OF_COUNTRIES",
-              "elicitationRequired": true,
-              "confirmationRequired": true,
-              "prompts": {
-                "confirmation": "Confirm.Intent-getFullPrefixIntent.IntentSlot-countryName",
-                "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-countryName"
-              }
-            }
-          ]
+          "type": "PlainText",
+          "value": "Are you calling from North America?"
         }
       ]
     },
-    "prompts": [
+    {
+      "id": "Confirm.Intent-getFullPrefixIntent.IntentSlot-fromCountry",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "I see you're calling from {fromCountry}, is that right?"
+        },
+        {
+          "type": "PlainText",
+          "value": "and you're calling from {fromCountry}, is that correct?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
       {
-        "id": "Confirm.Intent-getCountryCodeIntent",
-        "variations": [
+        "name": "getFullPrefixIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
           {
-            "type": "PlainText",
-            "value": "O.K. I heard you want to call {countryName}. Is that right?"
-          }
-        ]
-      },
-      {
-        "id": "Confirm.Intent-getFullPrefixIntent",
-        "variations": [
+            "name": "fromCountry",
+            "type": "LIST_OF_COUNTRIES",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry",
+              "confirmation": "Confirm.Intent-getFullPrefixIntent.IntentSlot-fromCountry"
+            }
+          },
           {
-            "type": "PlainText",
-            "value": "I see you want to call {countryName} . Is that right?"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Intent-getFullPrefixIntent.IntentSlot-countryName",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Sorry, which {countryName} are you trying to call?"
-          }
-        ]
-      },
-      {
-        "id": "Confirm.Intent-getFullPrefixIntent.IntentSlot-countryName",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "O.K. I heard {countryName}. Is that right?"
+            "name": "toCountry",
+            "type": "LIST_OF_COUNTRIES",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
           }
         ]
       }
