@@ -5,52 +5,57 @@
       Distributed on AS-IS basis, not responible/liable for anything.
       Redistribution strictly prohibited.
       REMOVING THIS MESSAGE STRICTLY PROHIBITED
-      version 1.6 SUNDAY 01:45
+      version 1.6 SUNDAY 19:26
       ---------------------------
       TERMINAL COMMANDS
       cd ./Documents/Development/alexa-skills/Phone_Booth/lambda/custom/
       ask lambda upload -f phoneBoothNA
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       */
-
-      var toCountry;
-      var myNeuCountry;
-      var countryName;
-      var myCodes;
-      var placeName;
-      var cName;
-      var card;
-      var myPrintCountry = "";
-      var newCountryName = "";
-      var myDialingCode;
-      var fromCountry=false;
-      var intprefix;
-
-      var HELLO_US = [ //EN Hello
+      var HELLO_NEW = [ //EN HELLO NEW
         "Hello, I'm here to help with international calls. You can say things like:"
         + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
+        + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+        "Hi, you can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
+        + " What can I do for you?",
+
+        "Hello, I'm here to help with international calls. You can say things like:"
+        + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
         + " <say-as digits='352'></say-as>? Now, how can I help?",
 
         "Hi, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
         + " What can I do for you?",
 
-        "<say-as interpret-as='interjection'>Howdy</say-as>, how can I help?"
+        "Hello, I'm here to help with international calls. You can say things like:"
+        + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
+        + " <say-as digits='49'></say-as>? Now, how can I help?"
       ];
-      var HELLO_DE = [];
+
+      var HELLO_PRO = [ //EN HELLO PRO
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+          "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?"
+      ];
 
       var GOODBYE_US = [ //US Goodbye
-          "Okay, bye for now.",
+          "Okay bye for now.",
           "<say-as interpret-as='interjection'>As you wish.</say-as>",
           "Very well, have a nice day.",
           "<say-as interpret-as='interjection'>Roger</say-as> that.",
-          "Okay, see you later.",
+          "Sure. See you later.",
           "Okay, no worries.",
           "Okay, goodbye.",
           "Okay, so long.",
-          "Okay, bye bye.",
+          "Okay bye, bye.",
           "Okay, take care."
       ];
-      var GOODBYE_UK = [ //UK Goodbye
+      var GOODBYE_GB = [ //GB Goodbye
           "All right.",
           "<say-as interpret-as='interjection'>As you wish.</say-as>",
           "<say-as interpret-as='interjection'>All righty.</say-as>",
@@ -125,13 +130,13 @@
 
       var ERRMSG_US = [
           "something went wrong, please try that again.",
-          "something went wrong, please use a valid country code or name.",
+          "something went wrong. Are you using a valid country name or dialing code?",
           "I couldn\'t find anything for that, please try again.",
-          "I'm stuck, please make sure you\'re using a valid country code or name.",
-          "this looks wrong, please check the country code or name.",
-          "that didn\'t work, please use valid country code or name.",
-          "something went wrong, please try again.",
-          "I couldn\'t find the info. Please use a valid country code or name."
+          "I'm stuck, please make sure you\'re using a valid country name.",
+          "this looks wrong, please check the info you\'re giving me.",
+          "that didn\'t work, please try again.",
+          "something went wrong, please try that again.",
+          "I couldn\'t find the info. Please use a valid country name."
       ];
 
       var ERRMSG_DE = [];
@@ -176,27 +181,48 @@
         "international dialing patterns vary by country and line type. Phone Box assumes you\'re calling from the same region in which your Echo device is located, and provides dialing instructions for both landline and mobile numbers."
         ];
 
+      var callingFrom = '';
+
       "use strict";
 
       var Alexa = require('alexa-sdk');
+
+      //const Strings = require('./langStrings');
+
       var APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
       var speechOutput = '';
       var reprompt = '';
       var errorMsg  = '';
+      var launchCount;
 
       var handlers = {
 
       'LaunchRequest': function () {
-            this.emit('startSession');
+            this.emit('NewSession');
       },
 
-      'startSession' : function () {
-            var rHello = randomPhrase(HELLO_US);
-            //var welcomeOutput = "<audio src='https://s3.amazonaws.com/snd-effects/calling_48k.mp3' />" + rHello;
-            //https://s3.amazonaws.com/snd-effects/success_07.mp3
-            var welcomeOutput = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />" + rHello;
-            var welcomeReprompt = "You can say things like how do I call Portugal, or what is the dialing code for Japan. Now, how can I help";
+      'NewSession' : function () {
+            var introAudio = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />";
+            var welcomeOutput = introAudio + randomPhrase(HELLO_PRO);
+            var welcomeReprompt = "If you need assistance, you can always say help.";
+            var launchCount = this.attributes.launchCount;
+
+            if (launchCount >= 1) {//used skill before
+              var count = launchCount;
+            } else { //first use
+              launchCount = this.attributes.launchCount = 0;
+              var count = launchCount;
+            }
+            if (count >= 3) {
+              welcomeOutput = introAudio + randomPhrase(HELLO_PRO);
+              count +=1;
+              this.attributes.launchCount = count;
+            } else {
+              welcomeOutput = introAudio + randomPhrase(HELLO_NEW);
+              count +=1;
+              this.attributes.launchCount = count;
+            }
             this.emit(':ask', welcomeOutput, welcomeReprompt);
       },
 
@@ -213,7 +239,7 @@
       		    myNeuCountry = "great britain";
       		} else if (toCountry === "vatican city" || toCountry === 'Vatican City') {
       		    myNeuCountry = "the vatican";
-      		} else if (toCountry === 'the states' || toCountry === 'the united states' || toCountry === 'The States' || toCountry === 'The United States') {
+      		} else if (toCountry === 'the states' || toCountry === 'the united states' || toCountry === 'the united states' || toCountry === 'north america' || toCountry === 'america') {
       		    myNeuCountry = "usa";
       		} else if (toCountry === 'sea shells') {
       		    myNeuCountry = "seychelles";
@@ -222,6 +248,7 @@
       		} else {
       		    myNeuCountry = toCountry;
       		}
+          console.log("MY_NEU_COUNTRY: " + myNeuCountry); //check what Alexa hears/sees
 
             httpsGetCodes(myNeuCountry,  (myCodes) => {
                     console.log("sent     : " + myNeuCountry);
@@ -383,15 +410,17 @@
               var locale = this.event.request.locale;
               var intentObj = this.event.request.intent;
               var toCountry = intentObj.slots.toCountry.value;
-              console.log("TO_COUNTRY: " + toCountry);
-              var fromCountry = intentObj.slots.fromCountry.value;
-              console.log("FROM_COUNTRY: " + fromCountry);
+              console.log("LINE417 toCountry: " + toCountry);
+              var callingFrom = this.attributes['callingFrom'] = '';
 
           if (intentObj.slots.fromCountry.value === undefined || intentObj.slots.fromCountry.value === "") {
             var slotToElicit = 'fromCountry';
             var speechOutput = 'Where are you calling from?';
-            var repromptSpeech = 'Where are you calling from?';
+            var repromptSpeech = 'Sorry, I didn\'t catch that, where are you calling from?';
             var updatedIntent = intentObj;
+            //save to DB so we don't have to keep asking during a single session
+            callingFrom = intentObj.slots.fromCountry.value;
+            this.attributes['callingFrom'] = callingFrom;
             this.emit(':elicitSlot', slotToElicit, speechOutput, repromptSpeech, updatedIntent);
           } else {
               fromCountry = intentObj.slots.fromCountry.value;
@@ -406,22 +435,18 @@
                 intprefix = '00';
               }
 
-              //TRY SLOT VALIDATION HERE
-          		if (toCountry === 'england' || toCountry === 'England') {
-          		    myNeuCountry = "great britain";
-          		    console.log("line 153: checking myNeuCountry value: " + myNeuCountry);
-          		} else if (toCountry === "vatican city" || toCountry === 'Vatican City') {
+              if (toCountry == 'america' || toCountry == 'north america' || toCountry == 'the u.s.' || toCountry == 'united states'){
+                myNeuCountry = 'usa';
+              } else if (toCountry == 'england' || toCountry === 'the u.k.') {
+                myNeuCountry = "great britain";
+          		} else if (toCountry === "vatican city") {
           		    myNeuCountry = "the vatican";
-          		    console.log("checking myNeuCountry value: " + myNeuCountry);
-          		} else if (toCountry === 'the states' || toCountry === 'the united states' || toCountry === 'The States' || toCountry === 'The United States' || toCountry === "the US" || toCountry === "North America" || toCountry === "north america") {
+          		} else if (toCountry === 'the states' || toCountry === 'the united states' || toCountry === 'The States' || toCountry === "The U.S." || toCountry === "North America") {
           		    myNeuCountry = "usa";
-          		    console.log("checking myNeuCountry value: " + myNeuCountry);
           		} else if (toCountry === 'sea shells') {
           		    myNeuCountry = "seychelles";
-          		    console.log("checking myNeuCountry value: " + myNeuCountry);
           		} else if (toCountry === 'hungry' || toCountry === 'Hungry') {
           		    myNeuCountry = "hungary";
-          		    console.log("checking myNeuCountry value: " + myNeuCountry);
           		} else {
           		    myNeuCountry = toCountry;
           		}
@@ -430,22 +455,17 @@
                     console.log("sent     : " + myNeuCountry);
                     console.log("received : " + myCodes.myPlaceCode + ", +" + myCodes.myDialingCode );
 
-                    var randomMore = randomPhrase(MORE_US);
-                    var reprompt01 = randomPhrase(MORE_US);
-                    var speechOutput = "";
             	      var response04 = "";
                     var rempompt04 = "Is there anything else you need?";
                     var errorMsg = randomPhrase(ERRCON_US) + randomPhrase(ERRMSG_US);
                     var locale = this.event.request.locale;
                     var intentObj = this.event.request.intent;
-                    var callingFrom = intentObj.slots.fromCountry.value;
-                    console.log("CALLING_FROM: " + callingFrom);
-                    var isFromCountryValid = false;
 
-                    if (myCodes.myDialingCode === "" || myCodes.myDialingCode === undefined) {
+                    if (myCodes.myDialingCode === '' || myCodes.myDialingCode === undefined) {
                         //undefined dialingCode means toCountry didn't match valid country slot
                         this.emit(':ask', errorMsg, randomPhrase(MORE_US));
                     } else {
+                        console.log("GOT PAST UNDEFINED again!!!!!!");
                           if (myNeuCountry === "usa"){
                             myPrintCountry = "USA";
                           } else {
@@ -470,80 +490,80 @@
                           var nDialingCode = myCodes.myDialingCode;
                           var nPlaceCode = myCodes.myPlaceCode;
 
-                      }//end if
+                          switch(locale) {
+                              case 'en-US':
+                                  prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                                  response04 = "When calling from " + fromCountry + " you need to dial "
+                                  + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
+                                  + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
+                                  + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                                  + "Check your device for these details and more.";
+                                  desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
+                                  + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
+                                  this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
+                                  break;
+                              case 'en-GB':
+                                  prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                                  response04 = "When calling from " + fromCountry + " you need to dial "
+                                  + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
+                                  + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
+                                + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                                  + "Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_US);
+                                  desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
+                                  + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
+                                  this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
+                                  break;
+                              case 'en-IN':
+                                  prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                                  response04 = "When calling from " + fromCountry + " you need to dial "
+                                  + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
+                                  + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
+                                  + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                                  desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
+                                  + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
+                                  this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
+                                  break;
+                              case 'de-DE':
+                                  prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                                  response04 = "When calling from " + fromCountry + " you need to dial "
+                                  + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
+                                  + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
+                                  + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                                  + "Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_DE);
+                                  desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
+                                  + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
+                                  this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
+                                  break;
+                              case 'jp-JP':
+                                  prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                                  response04 = "When calling from " + fromCountry + " you need to dial "
+                                  + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
+                                  + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
+                                  + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                                  + " Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_JP);
+                                  desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
+                                  + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
+                                  this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
+                                  break;
+                              default:
+                                  prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                                  response04 = "When calling from " + fromCountry + " you need to dial "
+                                  + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
+                                  + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
+                                  + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                                  + "Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_US);
+                                  desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
+                                  + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
+                                  this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
+                                  break;
 
-              switch(locale) {
-                  case 'en-US':
-                      prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + fromCountry + " you need to dial "
-                      + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
-                      + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                      + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                      + "Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_US);
-                      desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
-                      + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
-                      this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
-                      break;
-                  case 'en-GB':
-                      prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + fromCountry + " you need to dial "
-                      + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
-                      + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                    + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                      + "Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_US);
-                      desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                      + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
-                      this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
-                      break;
-                  case 'en-IN':
-                      prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + fromCountry + " you need to dial "
-                      + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
-                      + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                      + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                      desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                      + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
-                      this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
-                      break;
-                  case 'de-DE':
-                      prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + fromCountry + " you need to dial "
-                      + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
-                      + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                      + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                      + "Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_DE);
-                      desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                      + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
-                      this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
-                      break;
-                  case 'jp-JP':
-                      prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + fromCountry + " you need to dial "
-                      + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
-                      + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                      + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                      + " Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_JP);
-                      desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                      + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
-                      this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
-                      break;
-                  default:
-                      prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + fromCountry + " you need to dial "
-                      + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
-                      + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                      + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                      + "Check your device for these details and more. <break time='1s'/>" + randomPhrase(MORE_US);
-                      desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                      + " \n\n PRO TIP: " + randomPhrase(PROTIPS01);
-                      this.emit(':askWithCard', response04, reprompt04, card.title, desc, card.image);
-                      break;
+                                }//end switch
 
-                    }//end switch
+                          }//end if daling code undefined
 
-            });//end main https
+                      });//end https
 
-          } //end if fromCountry undefined
+              }//end elicit fromCountry
 
       },//end getFullPrefixIntent
 
@@ -558,12 +578,14 @@
               this.emit(':tell', randomGoodbye);
           },
           'AMAZON.StopIntent': function () {
-              var randomGoodbye = randomPhrase(GOODBYE_US) + "<audio src ='https://s3.amazonaws.com/snd-effects/magic_crystal_25.mp3' />";
+              var extro = "<audio src ='https://s3.amazonaws.com/snd-effects/magic_crystal_25.mp3' />"
+              var bye = randomPhrase(GOODBYE_US);
+              var randomGoodbye = bye + extro;
               this.emit(':tell', randomGoodbye);
           },
           'SessionEndedRequest': function () {
-              speechOutput = '';
-              //this.emit(':saveState', true);//uncomment to save attributes to db on session end
+              speechOutput = 'goodbye';
+              this.emit(':saveState', true);//save attributes to db on session end
               this.emit(':tell', speechOutput);
           },
       	'Unhandled': function () {
@@ -575,10 +597,9 @@
       exports.handler = (event, context) => {
           var alexa = Alexa.handler(event, context);
           alexa.APP_ID = APP_ID;
-          // To enable string internationalization (i18n) features, set a resources object.
-          //alexa.resources = languageStrings;
           alexa.registerHandlers(handlers);
-      	  alexa.dynamoDBTableName = 'phoneBOX'; //uncomment this line to save attributes to DB
+          alexa.resources = 'langStrings';
+      	  alexa.dynamoDBTableName = 'phoneBOX'; 
           alexa.execute();
       };
 
