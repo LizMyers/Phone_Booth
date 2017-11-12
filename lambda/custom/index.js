@@ -5,7 +5,7 @@
       Distributed on AS-IS basis, not responible/liable for anything.
       Redistribution strictly prohibited.
       REMOVING THIS MESSAGE STRICTLY PROHIBITED
-      version 1.5 Friday 18:42PM
+      version 1.6 SUNDAY 01:45
       ---------------------------
       TERMINAL COMMANDS
       cd ./Documents/Development/alexa-skills/Phone_Booth/lambda/custom/
@@ -23,21 +23,21 @@
       var myPrintCountry = "";
       var newCountryName = "";
       var myDialingCode;
-      var fromCountry;
+      var fromCountry=false;
       var intprefix;
 
       var HELLO_US = [ //EN Hello
         "Hello, I'm here to help with international calls. You can say things like:"
-        + " what is the dialing code for Spain, how do I call India, or which country has the dialing code",
+        + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
         + " <say-as digits='352'></say-as>? Now, how can I help?",
 
         "Hi, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
-        + "What can I do for you?",
+        + " What can I do for you?",
 
         "<say-as interpret-as='interjection'>Howdy</say-as>, how can I help?"
       ];
       var HELLO_DE = [];
-      
+
       var GOODBYE_US = [ //US Goodbye
           "Okay, bye for now.",
           "<say-as interpret-as='interjection'>As you wish.</say-as>",
@@ -193,7 +193,9 @@
 
       'startSession' : function () {
             var rHello = randomPhrase(HELLO_US);
-            var welcomeOutput = "<audio src='https://s3.amazonaws.com/snd-effects/calling_48k.mp3' />" + rHello;
+            //var welcomeOutput = "<audio src='https://s3.amazonaws.com/snd-effects/calling_48k.mp3' />" + rHello;
+            //https://s3.amazonaws.com/snd-effects/success_07.mp3
+            var welcomeOutput = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />" + rHello;
             var welcomeReprompt = "You can say things like how do I call Portugal, or what is the dialing code for Japan. Now, how can I help";
             this.emit(':ask', welcomeOutput, welcomeReprompt);
       },
@@ -380,8 +382,10 @@
 
               var locale = this.event.request.locale;
               var intentObj = this.event.request.intent;
-              var toCountry = this.event.request.intent.slots.toCountry.value;
-              var fromCountry = this.event.request.intent.slots.fromCountry.value;
+              var toCountry = intentObj.slots.toCountry.value;
+              console.log("TO_COUNTRY: " + toCountry);
+              var fromCountry = intentObj.slots.fromCountry.value;
+              console.log("FROM_COUNTRY: " + fromCountry);
 
           if (intentObj.slots.fromCountry.value === undefined || intentObj.slots.fromCountry.value === "") {
             var slotToElicit = 'fromCountry';
@@ -390,13 +394,13 @@
             var updatedIntent = intentObj;
             this.emit(':elicitSlot', slotToElicit, speechOutput, repromptSpeech, updatedIntent);
           } else {
-              var callingFrom = intentObj.slots.fromCountry.value;
+              fromCountry = intentObj.slots.fromCountry.value;
               //NOTE: Assume customer is calling from a country where Alexa ships
-              if(callingFrom === 'The US' || callingFrom === 'Canada' || callingFrom === 'The United States' || callingFrom === 'North America' || callingFrom === 'The USA' || callingFrom ==='US' || callingFrom === 'USA' || callingFrom === "the us") {
+              if(fromCountry === 'america' || fromCountry === 'canada' || fromCountry === 'the united states' || fromCountry === 'america' || fromCountry === 'the u.s.a.' || fromCountry ==='u.s.' || fromCountry === 'usa' || fromCountry === "the u.s.") {
                 intprefix = '011';
-              } else if (callingFrom === 'India'){
+              } else if (fromCountry === 'india' || fromCountry === 'germany'  || fromCountry === 'the u.k.' || fromCountry === 'england'){
                 intprefix = '00';
-              } else if (callingFrom === 'Japan' || callingFrom === 'japan'){
+              } else if (fromCountry === 'japan'){
                 intprefix = '010';
               } else {
                 intprefix = '00';
@@ -409,7 +413,7 @@
           		} else if (toCountry === "vatican city" || toCountry === 'Vatican City') {
           		    myNeuCountry = "the vatican";
           		    console.log("checking myNeuCountry value: " + myNeuCountry);
-          		} else if (toCountry === 'the states' || toCountry === 'the united states' || toCountry === 'The States' || toCountry === 'The United States' || toCountry === "the US") {
+          		} else if (toCountry === 'the states' || toCountry === 'the united states' || toCountry === 'The States' || toCountry === 'The United States' || toCountry === "the US" || toCountry === "North America" || toCountry === "north america") {
           		    myNeuCountry = "usa";
           		    console.log("checking myNeuCountry value: " + myNeuCountry);
           		} else if (toCountry === 'sea shells') {
@@ -433,15 +437,22 @@
                     var rempompt04 = "Is there anything else you need?";
                     var errorMsg = randomPhrase(ERRCON_US) + randomPhrase(ERRMSG_US);
                     var locale = this.event.request.locale;
-                    //var callingFrom = "";
+                    var intentObj = this.event.request.intent;
+                    var callingFrom = intentObj.slots.fromCountry.value;
+                    console.log("CALLING_FROM: " + callingFrom);
+                    var isFromCountryValid = false;
 
                     if (myCodes.myDialingCode === "" || myCodes.myDialingCode === undefined) {
+                        //undefined dialingCode means toCountry didn't match valid country slot
                         this.emit(':ask', errorMsg, randomPhrase(MORE_US));
                     } else {
-                          myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
-                          console.log("myPrintCountry: " + myPrintCountry);
+                          if (myNeuCountry === "usa"){
+                            myPrintCountry = "USA";
+                          } else {
+                            myPrintCountry = toTitleCase(myNeuCountry);
+                          }
+
                           var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
-                          console.log("myCardTitle: " + myCardTitle);
                           var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
                           var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
 
@@ -464,7 +475,7 @@
               switch(locale) {
                   case 'en-US':
                       prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + callingFrom + " you need to dial "
+                      response04 = "When calling from " + fromCountry + " you need to dial "
                       + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                       + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
                       + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
@@ -475,7 +486,7 @@
                       break;
                   case 'en-GB':
                       prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + callingFrom + " you need to dial "
+                      response04 = "When calling from " + fromCountry + " you need to dial "
                       + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                       + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
                     + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
@@ -486,7 +497,7 @@
                       break;
                   case 'en-IN':
                       prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + callingFrom + " you need to dial "
+                      response04 = "When calling from " + fromCountry + " you need to dial "
                       + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                       + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
                       + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
@@ -496,7 +507,7 @@
                       break;
                   case 'de-DE':
                       prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + callingFrom + " you need to dial "
+                      response04 = "When calling from " + fromCountry + " you need to dial "
                       + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                       + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
                       + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
@@ -507,7 +518,7 @@
                       break;
                   case 'jp-JP':
                       prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + callingFrom + " you need to dial "
+                      response04 = "When calling from " + fromCountry + " you need to dial "
                       + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                       + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
                       + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
@@ -518,7 +529,7 @@
                       break;
                   default:
                       prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                      response04 = "When calling from " + callingFrom + " you need to dial "
+                      response04 = "When calling from " + fromCountry + " you need to dial "
                       + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                       + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
                       + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
@@ -547,7 +558,7 @@
               this.emit(':tell', randomGoodbye);
           },
           'AMAZON.StopIntent': function () {
-              var randomGoodbye = randomPhrase(GOODBYE_US) + "<audio src = 'https://s3.amazonaws.com/snd-effects/hangup_48k.mp3' />";
+              var randomGoodbye = randomPhrase(GOODBYE_US) + "<audio src ='https://s3.amazonaws.com/snd-effects/magic_crystal_25.mp3' />";
               this.emit(':tell', randomGoodbye);
           },
           'SessionEndedRequest': function () {
@@ -681,9 +692,13 @@
                  }
 
                  //2 letter ISO code
-                 var myPlaceCode = myData.split(":").pop().toLowerCase().slice(2,4);
-                 console.log("PLACECODE: " + myPlaceCode);
-
+                 if (myPlaceName === "North America"){
+                   var myPlaceCode = "northAm";
+                   console.log("PLACE CODE: " + myPlaceCode);
+                 } else {
+                   var myPlaceCode = myData.split(":").pop().toLowerCase().slice(2,4);
+                   console.log("PLACECODE: " + myPlaceCode);
+                 }
                  var countryName = {
                     'myPlaceCode' : myPlaceCode,
                     'myPlaceName' : myPlaceName,
@@ -719,7 +734,7 @@
             //optionally pre-fill slots: update the intent object with slot values for which
             //you have defaults, then return Dialog.Delegate with this updated intent
             // in the updatedIntent property
-            this.emit(":delegate", updatedIntent); //uncomment this is using ASK SDK 1.0.9 or newer
+            this.emit(":delegate", updatedIntent); //uncomment this if using ASK SDK 1.0.9 or newer
 
       	  //this code is necessary if using ASK SDK versions prior to 1.0.9
       	  if(this.isOverridden()) {
