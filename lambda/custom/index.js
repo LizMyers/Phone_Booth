@@ -13,153 +13,177 @@
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   */
   const languageStrings = {
-            'en-US': {
-                translation: {
-                  HELLONEW: [
-                    "Hello, I\'m here to help with international calls. You can say things like: what is the dialing code for Spain, how do I call India, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                    "Hi, you can ask me things like: what is the dialing code for Portugal, or how do I call Japan? What can I do for you?",
-                    "Hello, I\'m here to help with international calls. You can say things like: what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                    "Hi, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany? What can I do for you?",
-                    "Hello, I\'m here to help with international calls. You can say things like: what is the dialing code for France, how do I call Great Britain, or which country has the dialing code <say-as digits='49'></say-as>? Now, how can I help?"
-                  ],
-                  HELLOPRO: [
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                    "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                  ],
-                  MORE: [
-                    "Anything else?",
-                    "Is there anything else you need?",
-                    "Need anything else?",
-                    "Anything more I can do?",
-                    "What else can I do?",
-                    "Can I help with anything else?",
-                    "Can I assist you with anything else?",
-                    "Need anything more?",
-                    "Can I do anything else for you now?",
-                  ],
-                  ERRCON: [
-                    "<say-as interpret-as='interjection'>Argh, </say-as>",
-                    "<say-as interpret-as='interjection'>Aw man, </say-as>",
-                    "<say-as interpret-as='interjection'>Blast, </say-as>",
-                    "<say-as interpret-as='interjection'>Bummer, </say-as>",
-                    "<say-as interpret-as='interjection'>Darn, </say-as>",
-                    "<say-as interpret-as='interjection'>Eek, </say-as>",
-                    "<say-as interpret-as='interjection'>Good grief, </say-as>",
-                    "<say-as interpret-as='interjection'>Heads up, </say-as>",
-                    "<say-as interpret-as='interjection'>Oh boy, </say-as>",
-                    "<say-as interpret-as='interjection'>Oh snap, </say-as>",
-                    "<say-as interpret-as='interjection'>Uh oh, </say-as>",
-                    "<say-as interpret-as='interjection'>Whoops a daisy, </say-as>",
-                  ],
-                  ERRMSG : [
-                    "something went wrong, please try that again.",
-                    "something went wrong. Are you using a valid country name or dialing code?",
-                    "I couldn\'t find anything for that, please try again.",
-                    "I'm stuck, please make sure you\'re using a valid country name.",
-                    "this looks wrong, please check the info you\'re giving me.",
-                    "that didn\'t work, please try again.",
-                    "something went wrong, please try that again.",
-                    "I couldn\'t find the info. Please use a valid country name.",
-                  ],
-                  HELP : [
-                      "You can say things like: what is the dialing code for Spain, how do I call India, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                      "You can ask me things like: what is the dialing code for Portugal, or how do I call Japan? What can I do for you?",
-                      "I\'m here to help with international calls. You can say things like: what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                      "You can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany? What can I do for you?",
-                      "You can say things like: what is the dialing code for France, how do I call Great Britain, or which country has the dialing code <say-as digits='49'></say-as>? Now, how can I help?",
-                  ],
-                  GOODBYE : [
-                    "Okay bye for now.",
-                    "<say-as interpret-as='interjection'>As you wish.</say-as>",
-                    "Very well, have a good day.",
-                    "<say-as interpret-as='interjection'>Roger</say-as> that.",
-                    "Sure. See you later.",
-                    "Okay, no worries.",
-                    "Okay, goodbye.",
-                    "Okay, so long.",
-                    "Okay bye, bye.",
-                    "Okay, take care."
-                  ],
-                  SKILL_NAME: 'Phone Booth',
-              },
-            },
-            'en-GB': {
-                translation: {
-                    ERRCON: [
-                      "<say-as interpret-as='interjection'>Aw, </say-as>",
-                      "<say-as interpret-as='interjection'>Blimey, </say-as>",
-                      "<say-as interpret-as='interjection'>Gosh, </say-as>",
-                      "<say-as interpret-as='interjection'>Darn, </say-as>",
-                      "<say-as interpret-as='interjection'>Look out, </say-as>",
-                      "<say-as interpret-as='interjection'>Oh bother, </say-as>",
-                      "<say-as interpret-as='interjection'>Oh boy, </say-as>",
-                      "<say-as interpret-as='interjection'>Oh dear, </say-as>",
-                      "<say-as interpret-as='interjection'>Oh my, </say-as>",
-                      "<say-as interpret-as='interjection'>Oh snap, </say-as>",
-                      "<say-as interpret-as='interjection'>Uh oh, </say-as>",
-                    ],
-                    ERRMSG : [
-                      "something went wrong, please try that again.",
-                      "something went wrong. Are you using a valid country name or dialing code?",
-                      "I couldn\'t find anything for that, please try again.",
-                      "I'm stuck, please make sure you\'re using a valid country name.",
-                      "this looks wrong, please check the info you\'re giving me.",
-                      "that didn\'t work, please try again.",
-                      "something went wrong, please try that again.",
-                      "I couldn\'t find the info. Please use a valid country name.",
-                    ],
-                    GOODBYE : [
-                      "All right.",
-                      "<say-as interpret-as='interjection'>As you wish.</say-as>",
-                      "<say-as interpret-as='interjection'>All righty.</say-as>",
-                      "<say-as interpret-as='interjection'>Cheerio.</say-as>",
-                      "<say-as interpret-as='interjection'>Roger</say-as> that.",
-                      "<say-as interpret-as='interjection'>Righto</say-as> goodbye.",
-                      "<say-as interpret-as='interjection'>Simples</say-as>... goodbye.",
-                      "Very well, take care.",
-                      "All right, no worries.",
-                      "All right, goodbye.",
-                      "All right, so long."
-                    ],
-                    SKILL_NAME: 'Phone Box',
-                },
-            },
-            'de': {
-                translation: {
-                    ERRCON: [
-                        'Scheisse!',
-                        'Verdammt noch mal!',
-                    ],
-                    ERRMSG: [
-                      "something went wrong, please try that again.",
-                      "something went wrong. Are you using a valid country name or dialing code?",
-                      "I couldn\'t find anything for that, please try again.",
-                      "I'm stuck, please make sure you\'re using a valid country name.",
-                      "this looks wrong, please check the info you\'re giving me.",
-                      "that didn\'t work, please try again.",
-                      "something went wrong, please try that again.",
-                      "I couldn\'t find the info. Please use a valid country name.",
-                    ],
-                    SKILL_NAME: 'Telefonzelle',
-                },
-            }
-        }
+      'en-US': {
+          translation: {
+            HELLONEW: [
+              "Hello, I'm here to help with international calls. You can say things like:"
+              + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
+              + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+              "Hi, you can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
+              + " What can I do for you?",
+
+              "Hello, I'm here to help with international calls. You can say things like:"
+              + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
+              + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+              "Hi, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
+              + " What can I do for you?",
+
+              "Hello, I'm here to help with international calls. You can say things like:"
+              + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
+              + " <say-as digits='49'></say-as>? Now, how can I help?"
+            ],
+            HELLOPRO: [
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?"
+            ],
+            MORE: [
+              "Anything else?",
+              "Is there anything else you need?",
+              "Need anything else?",
+              "Anything more I can do?",
+              "What else can I do?",
+              "Can I help with anything else?",
+              "Can I assist you with anything else?",
+              "Need anything more?",
+              "Can I do anything else for you now?"
+            ],
+            ERRCON: [
+              "<say-as interpret-as='interjection'>Argh, </say-as>",
+              "<say-as interpret-as='interjection'>Aw man, </say-as>",
+              "<say-as interpret-as='interjection'>Blast, </say-as>",
+              "<say-as interpret-as='interjection'>Bummer, </say-as>",
+              "<say-as interpret-as='interjection'>Darn, </say-as>",
+              "<say-as interpret-as='interjection'>Eek, </say-as>",
+              "<say-as interpret-as='interjection'>Good grief, </say-as>",
+              "<say-as interpret-as='interjection'>Heads up, </say-as>",
+              "<say-as interpret-as='interjection'>Oh boy, </say-as>",
+              "<say-as interpret-as='interjection'>Oh snap, </say-as>",
+              "<say-as interpret-as='interjection'>Uh oh, </say-as>",
+              "<say-as interpret-as='interjection'>Whoops a daisy, </say-as>",
+            ],
+            ERRMSG : [
+              "something went wrong, please try that again.",
+              "something went wrong. Are you using a valid country name or dialing code?",
+              "I couldn\'t find anything for that, please try again.",
+              "I'm stuck, please make sure you\'re using a valid country name.",
+              "this looks wrong, please check the info you\'re giving me.",
+              "that didn\'t work, please try again.",
+              "something went wrong, please try that again.",
+              "I couldn\'t find the info. Please use a valid country name.",
+            ],
+            HELP : [
+                "You can say things like:"
+                + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
+                + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+                "You can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
+                + " What can I do for you?",
+
+                "I'm here to help with international calls. You can say things like:"
+                + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
+                + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+                "You can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
+                + " What can I do for you?",
+
+                "You can say things like:"
+                + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
+                + " <say-as digits='49'></say-as>? Now, how can I help?"
+            ],
+            GOODBYE : [
+              "Okay bye for now.",
+              "<say-as interpret-as='interjection'>As you wish.</say-as>",
+              "Very well, have a good day.",
+              "<say-as interpret-as='interjection'>Roger</say-as> that.",
+              "Sure. See you later.",
+              "Okay, no worries.",
+              "Okay, goodbye.",
+              "Okay, so long.",
+              "Okay, <prosody rate='fast'> buh-bye!</prosody>",
+              "Okay, take care."
+            ],
+            SKILL_NAME: 'Phone Booth',
+        },
+      },
+      'en-GB': {
+          translation: {
+              ERRCON: [
+                "<say-as interpret-as='interjection'>Aw, </say-as>",
+                "<say-as interpret-as='interjection'>Blimey, </say-as>",
+                "<say-as interpret-as='interjection'>Gosh, </say-as>",
+                "<say-as interpret-as='interjection'>Darn, </say-as>",
+                "<say-as interpret-as='interjection'>Look out, </say-as>",
+                "<say-as interpret-as='interjection'>Oh bother, </say-as>",
+                "<say-as interpret-as='interjection'>Oh boy, </say-as>",
+                "<say-as interpret-as='interjection'>Oh dear, </say-as>",
+                "<say-as interpret-as='interjection'>Oh my, </say-as>",
+                "<say-as interpret-as='interjection'>Oh snap, </say-as>",
+                "<say-as interpret-as='interjection'>Uh oh, </say-as>",
+              ],
+              ERRMSG : [
+                "something went wrong, please try that again.",
+                "something went wrong. Are you using a valid country name or dialing code?",
+                "I couldn\'t find anything for that, please try again.",
+                "I'm stuck, please make sure you\'re using a valid country name.",
+                "this looks wrong, please check the info you\'re giving me.",
+                "that didn\'t work, please try again.",
+                "something went wrong, please try that again.",
+                "I couldn\'t find the info. Please use a valid country name.",
+              ],
+              GOODBYE : [
+                "All right.",
+                "<say-as interpret-as='interjection'>As you wish.</say-as>",
+                "<say-as interpret-as='interjection'>All righty.</say-as>",
+                "<say-as interpret-as='interjection'>Cheerio.</say-as>",
+                "<say-as interpret-as='interjection'>Roger</say-as> that.",
+                "<say-as interpret-as='interjection'>Righto</say-as> goodbye.",
+                "<say-as interpret-as='interjection'>Simples</say-as>... goodbye.",
+                "Very well, take care.",
+                "All right, no worries.",
+                "All right, goodbye.",
+                "All right, so long."
+              ],
+              SKILL_NAME: 'Phone Box',
+          },
+      },
+      'de': {
+          translation: {
+              ERRCON: [
+                  'Scheisse!',
+                  'Verdammt noch mal!',
+              ],
+              ERRMSG: [
+                "something went wrong, please try that again.",
+                "something went wrong. Are you using a valid country name or dialing code?",
+                "I couldn\'t find anything for that, please try again.",
+                "I'm stuck, please make sure you\'re using a valid country name.",
+                "this looks wrong, please check the info you\'re giving me.",
+                "that didn\'t work, please try again.",
+                "something went wrong, please try that again.",
+                "I couldn\'t find the info. Please use a valid country name.",
+              ],
+              SKILL_NAME: 'Telefonzelle',
+          },
+      }
+  }
 
   var card = "";
   var desc = "";
   var intprefix = "";
   var myNeuCountry = "";
 
+  const Alexa = require('alexa-sdk');
+  const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
+
   'use strict';
-  var Alexa = require('alexa-sdk');
-  //var languageStrings = require('./langStrings');
-  var APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
   var handlers = {
 
@@ -167,9 +191,7 @@
         this.emit('NewSession');
   },
   'NewSession' : function () {
-        //var launchCount = this.attributes.launchCount;
-        var launchCount = 4;
-        console.log(launchCount);
+        var launchCount = this.attributes.launchCount;
         var count = 0;
         if (launchCount >= 3) {//used skill before
           count = launchCount;
@@ -186,25 +208,22 @@
           this.attributes.launchCount = count;
           this.emit('HelloNew');
         }
-
-        this.attributes.launchCount = launchCount;
-        console.log("launchCount: " + this.attributes.launchCount);
-
   },
   'HelloNew' : function(){
     const introAudio = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />";
     const helloNewArr = this.t('HELLONEW');
     const helloNewMsg = randomPhrase(helloNewArr);
     const helloNew = introAudio + helloNewMsg;
-    const helloProReprompt = "You can say help at any time.";
-    this.emit(':ask', helloNew, helloNew);
+    const helloNewReprompt = "You can say help at any time.";
+    this.emit(':ask', helloNew, helloNewReprompt);
   },
   'HelloPro':function(){
     const introAudio = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />";
     const helloProArr = this.t('HELLOPRO');
     const helloProMsg = randomPhrase(helloProArr);
     const helloPro = introAudio + helloProMsg;
-    this.emit(':ask', helloPro, helloPro);
+    const helloProReprompt = "You can say help at any time.";
+    this.emit(':ask', helloPro, helloProReprompt);
   },
   'getCountryCodeIntent': function () {
      	var response01 = "";
@@ -218,8 +237,7 @@
       var randomErrCon = randomPhrase(errConArr);
       var randomErrMsg = randomPhrase(errMsgArr);
       var randomErrorMessage = randomErrCon + randomErrMsg;
-      /////////******************/////////////FIX THIS
-      //process toCountry - use entity resolution in next version
+
       var toCountry = this.event.request.intent.slots.toCountry.value;
 
   		if (toCountry === 'england' || toCountry === 'England') {
@@ -235,9 +253,6 @@
   		} else {
   		    myNeuCountry = toCountry;
   		}
-
-      console.log("MY_NEU_COUNTRY: " + myNeuCountry); //check what Alexa hears/sees
-      /////////******************/////////////FIX THIS
 
         httpsGetCodes(myNeuCountry,  (myCodes) => {
                 console.log("sent     : " + myNeuCountry);
@@ -265,35 +280,34 @@
                         intprefix = "011";
                         var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
                         desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
-                        + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
-                        this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
+                        + " \n\n ALEXA SAID: The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                         break;
                     case 'en-GB':
                         intprefix = "00";
                         response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
                         desc = "LANDLINE: 00 " + myCodes.myDialingCode + " \n MOBILE: +" + myCodes.myDialingCode
-                        + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically."
+                        + " \n\n ALEXA SAID: The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                         this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
                         break;
                     case 'de-DE':
                         intprefix = "00";
                         response01 = "Die Landesvorwahl für " + myPrintCountry + " ist :" + myCodes.myDialingCode + "." ;
                         desc = "FESTNETZ: 00 " + nDialingCode + " \n HANDY: +" + nDialingCode
-                        + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically."
+                        + " \n\n ALEXA SAID: The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                         this.emit(':askWithCard', response01, reprompt01, card.title, card.desc, card.image);
                         break;
                     case 'en-IN':
                         intprefix = "00";
                         response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
                         desc = "LANDLINE: 00 " + myCodes.myDialingCode + " \n MOBILE: +" + myCodes.myDialingCode
-                        + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically."
+                        + " \n\n ALEXA SAID: The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                         this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
                         break;
                     default:
                         intprefix = "00";
                         response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as> .";
                         desc = "LANDLINE: 00 " + myCodes.myDialingCode + " \n MOBILE: +" + myCodes.myDialingCode
-                        + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically."
+                        + " \n\n ALEXA SAID: The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                         this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
                         break;
 
@@ -345,35 +359,35 @@
                       intprefix = "011";
                       response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName +'.';
                       desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: +" + myDialingCode;
-                      + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                      + " \n\n ALEXA SAID: The country with dialing code + myDialingCode is: " + countryName.myPlaceName +'.';
                       this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                       break;
                   case 'en-GB':
                       intprefix = "00";
                       response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName +'.';
                       desc = "LANDLINE: 00 " + myDialingCode + " \n MOBILE: +" + myDialingCode;
-                      + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                      + " \n\n ALEXA SAID: The country with dialing code + myDialingCode is: " + countryName.myPlaceName +'.';
                       this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                       break;
                   case 'de-DE':
                       intprefix = "00";
                       response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName +'.';
                       desc = "LANDLINE:00 " + myDialingCode + " \n MOBILE: +" + myDialingCode;
-                      + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                      + " \n\n ALEXA SAID: The country with dialing code + myDialingCode is: " + countryName.myPlaceName +'.';
                       this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                       break;
                   case 'en-IN':
                       intprefix = "00";
                       response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName +'.';
                       desc = "LANDLINE: 00 " + myDialingCode + " \n MOBILE: +" + myDialingCode;
-                      + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                      + " \n\n ALEXA SAID: The country with dialing code + myDialingCode is: " + countryName.myPlaceName +'.';
                       this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                       break;
                   default:
                       intprefix = "00";
                       response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName +'.';
                       desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: +" + myDialingCode;
-                      + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                      + " \n\n ALEXA SAID: The country with dialing code + myDialingCode is: " + countryName.myPlaceName +'.';
                       this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                       break;
                  }//end switch
@@ -402,18 +416,18 @@
       var toCountry = intentObj.slots.toCountry.value;
       var fromCountry = intentObj.slots.fromCountry.value;
 
-    //if(nowCallingFrom === undefined || nowCallingFrom === '') {
+      //user didn't over-answer or say where they're calling from so we can't give intPrefix
       if (fromCountry === undefined || fromCountry === '') {
         var slotToElicit = 'fromCountry';
         var speechOutput = 'Where are you calling from?';
-        //var speechOutput = 'Are you calling from ' + nowCallingFrom + '?';
         var repromptSpeech = 'Sorry, I didn\'t catch that, where are you calling from?';
         var updatedIntent = intentObj;
         this.emit(':elicitSlot', slotToElicit, speechOutput, repromptSpeech, updatedIntent);
-
       } else {
 
-          //NOTE: Assume customer is calling from a country where Alexa ships
+          //get intprefix from userCountry (assume they're using their Echo device at home)
+          //to extend project use location API and intprefix API
+
           if(fromCountry === 'america' || fromCountry === 'canada' || fromCountry === 'the united states' || fromCountry === 'america' || fromCountry === 'the u.s.a.' || fromCountry ==='u.s.' || fromCountry === 'usa' || fromCountry === "the u.s.") {
             intprefix = '011';
           } else if (fromCountry === 'india' || fromCountry === 'germany'  || fromCountry === 'the u.k.' || fromCountry === 'england'){
@@ -424,6 +438,7 @@
             intprefix = '00';
           }
 
+          //clean up toCountry name
           if (toCountry == 'america' || toCountry == 'north america' || toCountry == 'the u.s.' || toCountry == 'united states'){
             myNeuCountry = 'usa';
           } else if (toCountry == 'england' || toCountry === 'the u.k.') {
@@ -448,16 +463,11 @@
                     //undefined dialingCode means toCountry didn't match valid country slot
                     this.emit(':ask', randomErrorMessage, reprompt03);
                 } else {
-                      if(myNeuCountry === "usa"){
-                        myPrintCountry = "USA";
-                      } else {
-                        myPrintCountry = toTitleCase(myNeuCountry);
-                      }
 
+                      myPrintCountry = toTitleCase(myNeuCountry);
                       var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
                       var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
                       var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
-
                       var card = {
                           'type' : 'Standard',
                           'title' : myCardTitle,
@@ -472,41 +482,45 @@
                       var nPlaceCode = myCodes.myPlaceCode;
 
                       //write to dynamoDBTableName
-                      var saveFromCountry = intentObj.slots.fromCountry.value;
-                      this.attributes.fromCountry = saveFromCountry;
+                      this.attributes.fromCountry =  nCountryName;
 
                       switch(locale) {
                           case 'en-US':
-                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                            + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                              + "Check your device for these details and more. <break time='1s'/>";
-                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                              + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                              + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                              + "Check your device for these details and more.";
+                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
+                              + " \n\n When calling from Germany, dial the prefix first, followed by the country code for Spain, 34."
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
-                              break;
                           case 'en-GB':
-                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                            + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                              + "Check your device for these details and more. <break time='1s'/>";
-                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                              + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                              + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                              + "Check your device for these details and more.";
+                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
+                              + " \n\n ALEXA SAID: When calling from " + fromCountry + " you need to dial " + intprefix +
+                              + ", the international prefix, followed by the country code " + prettyCode + " for "
+                              + nCountryName + ". Again, that\'s " + intprefix + prettyCode
+                              + ". Check your device for these details and more.";
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                               break;
                           case 'en-IN':
-                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                            + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                              + "Check your device for these details and more. <break time='1s'/>";
-                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                              + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                              + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                              + "Check your device for these details and more.";
+                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
+                              + " \n\n ALEXA SAID: When calling from " + fromCountry + " you need to dial " + intprefix +
+                              + ", the international prefix, followed by the country code " + prettyCode + " for "
+                              + nCountryName + ". Again, that\'s " + intprefix + prettyCode
+                              + ". Check your device for these details and more.";
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                               break;
                           case 'de-DE':
@@ -514,21 +528,27 @@
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                            + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                              + "Check your device for these details and more. <break time='1s'/>";
-                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                              + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                              + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                              + "Check your device for these details and more.";
+                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
+                              + " \n\n ALEXA SAID: When calling from " + fromCountry + " you need to dial " + intprefix +
+                              + ", the international prefix, followed by the country code " + prettyCode + " for "
+                              + nCountryName + ". Again, that\'s " + intprefix + prettyCode
+                              + ". Check your device for these details and more.";
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                               break;
                           default:
-                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
-                            + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
-                              + "Check your device for these details and more. <break time='1s'/>";
-                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                              + " \n\n PRO TIP: Enter telephone numbers in your address book with the + sign and let your smart phone take care of the int'\l prefix (the one for landlines) automagically. "
+                              + " Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. "
+                              + "Check your device for these details and more.";
+                              desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
+                              + " \n\n ALEXA SAID: When calling from " + fromCountry + " you need to dial " + intprefix +
+                              + ", the international prefix, followed by the country code " + prettyCode + " for "
+                              + nCountryName + ". Again, that\'s " + intprefix + prettyCode
+                              + ". Check your device for these details and more.";
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                               break;
                             }//end switch
@@ -538,6 +558,7 @@
                   });//end https
 
           }//end elicit fromCountry
+
 
   },//end getFullPrefixIntent
 
@@ -582,16 +603,19 @@
           this.emit(':tell', goodbyeMsg);
       },
       'SessionEndedRequest': function () {
-          const speechOutput = 'goodbye';
-          this.emit(':saveState', true);//save attributes to db on session end
+          var response04 = 'goodbye';
+          this.emit(':saveState', true);//save attributes to db on session end
+          this.emit(':tell', speechOutput);
       },
-  	'Unhandled': function () {
-          this.emit('AMAZON.HelpItent');
+    'Unhandled': function () {
+          var response04 = "Phone Booth didn\'t quite understand what you wanted.  Do you want to try something else?";
+          var response04 = "How can I help?";
+          this.emit(':ask', repsonse04, reprompt04);
       }
   };
 
   exports.handler = (event, context) => {
-      var alexa = Alexa.handler(event, context);
+      const alexa = Alexa.handler(event, context);
       alexa.APP_ID = APP_ID;
       alexa.registerHandlers(handlers);
       alexa.resources = languageStrings;

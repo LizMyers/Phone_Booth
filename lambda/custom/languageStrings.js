@@ -1,12 +1,26 @@
-const languageStrings = {
+
+
+      const languageStrings = {
           'en-US': {
               translation: {
                 HELLONEW: [
-                  "Hello, I\'m here to help with international calls. You can say things like: what is the dialing code for Spain, how do I call India, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                  "Hi, you can ask me things like: what is the dialing code for Portugal, or how do I call Japan? What can I do for you?",
-                  "Hello, I\'m here to help with international calls. You can say things like: what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                  "Hi, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany? What can I do for you?",
-                  "Hello, I\'m here to help with international calls. You can say things like: what is the dialing code for France, how do I call Great Britain, or which country has the dialing code <say-as digits='49'></say-as>? Now, how can I help?"
+                  "Hello, I'm here to help with international calls. You can say things like:"
+                  + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
+                  + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+                  "Hi, you can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
+                  + " What can I do for you?",
+
+                  "Hello, I'm here to help with international calls. You can say things like:"
+                  + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
+                  + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+                  "Hi, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
+                  + " What can I do for you?",
+
+                  "Hello, I'm here to help with international calls. You can say things like:"
+                  + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
+                  + " <say-as digits='49'></say-as>? Now, how can I help?"
                 ],
                 HELLOPRO: [
                   "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
@@ -16,7 +30,7 @@ const languageStrings = {
                   "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
                   "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
                   "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-                  "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
+                  "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?"
                 ],
                 MORE: [
                   "Anything else?",
@@ -27,7 +41,7 @@ const languageStrings = {
                   "Can I help with anything else?",
                   "Can I assist you with anything else?",
                   "Need anything more?",
-                  "Can I do anything else for you now?",
+                  "Can I do anything else for you now?"
                 ],
                 ERRCON: [
                   "<say-as interpret-as='interjection'>Argh, </say-as>",
@@ -54,11 +68,23 @@ const languageStrings = {
                   "I couldn\'t find the info. Please use a valid country name.",
                 ],
                 HELP : [
-                    "You can say things like: what is the dialing code for Spain, how do I call India, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                    "You can ask me things like: what is the dialing code for Portugal, or how do I call Japan? What can I do for you?",
-                    "I\'m here to help with international calls. You can say things like: what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code <say-as digits='352'></say-as>? Now, how can I help?",
-                    "You can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany? What can I do for you?",
-                    "You can say things like: what is the dialing code for France, how do I call Great Britain, or which country has the dialing code <say-as digits='49'></say-as>? Now, how can I help?",
+                    "You can say things like:"
+                    + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
+                    + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+                    "You can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
+                    + " What can I do for you?",
+
+                    "I'm here to help with international calls. You can say things like:"
+                    + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
+                    + " <say-as digits='352'></say-as>? Now, how can I help?",
+
+                    "You can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
+                    + " What can I do for you?",
+
+                    "You can say things like:"
+                    + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
+                    + " <say-as digits='49'></say-as>? Now, how can I help?"
                 ],
                 GOODBYE : [
                   "Okay bye for now.",
