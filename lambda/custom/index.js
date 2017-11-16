@@ -9,12 +9,9 @@
   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   -------------------------------
-    version 1.8 THURSDAY 04:23
+    version 1.8 THURSDAY 16:41
   -------------------------------
 
-  TERMINAL COMMANDS
-  cd ./Documents/Development/alexa-skills/Phone_Booth/lambda/custom/
-  ask lambda upload -f phoneBoothNA
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   */
 
@@ -22,43 +19,45 @@
   var desc = "";
   var intprefix = "";
   var myNeuCountry = "";
-  var askedFromCountry = 0;
+  var launchCount;
+  var saidCallingFrom = false;
 
   const Alexa = require('alexa-sdk');
   const Strings = require('./langStrings.js');
-  const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
+  const APP_ID = 'amzn1.ask.skill.45fb41c7-2320-434a-b65f-a91dbcf75926';
 
   'use strict';
 
   var handlers = {
 
   'LaunchRequest': function () {
-
-        this.emit('HelloNew');
+        this.emit('NewSession');
   },
   'NewSession' : function () {
-        var launchCount = this.attributes.launchCount;
-        var count = 0;
-        if (launchCount >= 3) {//used skill before
+      if(Object.keys(this.attributes).length === 0) { // Check if it's the first time the skill has been invoked
+          this.attributes.launchCount = 0;
+          var launchCount = 0;
+          var count = 0;
+       } else {
+          var launchCount = this.attributes.launchCount;
+          var count = launchCount;
+       }
+      if (launchCount >= 3) {
           count = launchCount;
-        } else { //first use
-          launchCount = this.attributes.launchCount = 0;
-          count = launchCount;
-        }
-        if (count >= 3) {
           count +=1;
+          console.log("COUNT= " + count);
           this.attributes.launchCount = count;
           this.emit('HelloPro');
         } else {
           count +=1;
+          console.log("COUNT= " + count);
           this.attributes.launchCount = count;
           this.emit('HelloNew');
         }
   },
-
   'HelloNew' : function(){
     const introAudio = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />";
-    const helloNewArr = Strings.t('HELLONEW');
+    const helloNewArr = this.t('HELLONEW');
     const helloNewMsg = randomPhrase(helloNewArr);
     const helloNew = introAudio + helloNewMsg;
     const helloNewReprompt = "You can say help at any time.";
@@ -108,7 +107,7 @@
                 if (myCodes.myDialingCode === "" || myCodes.myDialingCode === undefined) {
                     this.emit(':ask', randomErrorMessage, reprompt01);
                 } else {
-                      var myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
+                      myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
                       var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
                       var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
                       var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
@@ -266,17 +265,19 @@
       var toCountry = intentObj.slots.toCountry.value;
       var fromCountry = intentObj.slots.fromCountry.value;
 
-      //user didn't over-answer or say where they're calling from so we can't give intPrefix
+      if(saidCallingFrom && fromCountry === undefined){
+        fromCountry = this.attributes.fromCountry;
+      } 
       if (fromCountry === undefined || fromCountry === '') {
         var slotToElicit = 'fromCountry';
         var speechOutput = 'Where are you calling from?';
         var repromptSpeech = 'Sorry, I didn\'t catch that, where are you calling from?';
         var updatedIntent = intentObj;
-        console.log('askedFromCountry= ' + askedFromCountry);
+        saidCallingFrom = true;
         this.emit(':elicitSlot', slotToElicit, speechOutput, repromptSpeech, updatedIntent);
       } else {
 
-          if(fromCountry === 'america' || fromCountry === 'canada' || fromCountry === 'the united states' || fromCountry === 'america' || fromCountry === 'the u.s.a.' || fromCountry ==='u.s.' || fromCountry === 'usa' || fromCountry === "the u.s.") {
+          if(fromCountry === 'america' || fromCountry === 'canada' || fromCountry === 'the united states' || fromCountry === 'the US' || fromCountry === 'the usa' || fromCountry ==='u.s.' || fromCountry === 'u.s.a.') {
             intprefix = '011';
           } else if (fromCountry === 'india' || fromCountry === 'germany'  || fromCountry === 'the u.k.' || fromCountry === 'england'){
             intprefix = '00';
@@ -311,7 +312,6 @@
                     //undefined dialingCode means toCountry didn't match valid country slot
                     this.emit(':ask', randomErrorMessage, reprompt03);
                 } else {
-
                       myPrintCountry = toTitleCase(myNeuCountry);
                       var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
                       var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
@@ -325,16 +325,16 @@
                               'largeImageUrl' : lgImgUrl
                           }
                       };
+                        this.attributes.fromCountry = intentObj.slots.fromCountry.value;
+                        this.attributes.toCountry = intentObj.slots.toCountry.value;
+
                       var nCountryName = myPrintCountry;
                       var nDialingCode = myCodes.myDialingCode;
                       var nPlaceCode = myCodes.myPlaceCode;
 
-                      //write to dynamoDBTableName
-                      this.attributes.fromCountry =  nCountryName;
-
                       switch(locale) {
                           case 'en-US':
-                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
@@ -344,7 +344,7 @@
                               + " \n\n When calling from Germany, dial the prefix first, followed by the country code for Spain, 34."
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                           case 'en-GB':
-                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
@@ -358,7 +358,7 @@
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                               break;
                           case 'en-IN':
-                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
@@ -386,7 +386,7 @@
                               this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                               break;
                           default:
-                          prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
+                              prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                               response03 = "When calling from " + fromCountry + " you need to dial "
                               + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                               + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". "
@@ -450,9 +450,7 @@
           this.emit(':tell', goodbyeMsg);
       },
       'SessionEndedRequest': function () {
-          var response04 = 'goodbye';
           this.emit(':saveState', true);//save attributes to db on session end
-          this.emit(':tell', speechOutput);
       },
     'Unhandled': function () {
           var response04 = "Phone Booth didn\'t quite understand what you wanted.  Do you want to try something else?";
@@ -466,7 +464,7 @@
       alexa.APP_ID = APP_ID;
       alexa.registerHandlers(handlers);
       alexa.resources = Strings;
-  	  alexa.dynamoDBTableName = 'phoneBOX'; 
+  	  alexa.dynamoDBTableName = 'phoneBooth'; 
       alexa.execute();
   };
 
@@ -604,9 +602,9 @@
       try{
   		var canonical = slot.resolutions.resolutionsPerAuthority[0].values[0].value.name;
   	}catch(err){
-  	    console.log("from line 355: " + err.message);
+  	    //console.log("from line 355: " + err.message);
   	    var canonical = slot.value;
-  	    console.log("canoncial var at line 362: " + canonical);
+  	   // console.log("canoncial var at line 362: " + canonical);
   	};
   	return canonical;
   };
@@ -673,7 +671,7 @@
 
   function isSlotValid(request, slotName){
           var slot = request.intent.slots[slotName];
-          console.log("request = "+JSON.stringify(request)); //uncomment if you want to see the request
+          console.log("request = "+JSON.stringify(request));
           var slotValue;
 
           //if we have a slot, get the text and store it into speechOutput
@@ -683,7 +681,7 @@
               return slotValue;
           } else {
               //we didn't get a value in the slot.
-              console.log("Houston, we have a problem!");
+              console.log("Slot is empty.");
               return false;
           }
   }
@@ -784,3 +782,8 @@
       }
       return [directive];
   }
+
+  /*  TERMINAL COMMANDS - delete before publishing
+    cd ./Documents/Development/alexa-skills/Phone_Booth/lambda/custom/
+    ask lambda upload -f phoneBoothNA
+  */
