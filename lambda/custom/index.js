@@ -31,13 +31,13 @@
   var handlers = {
 
   'LaunchRequest': function () {
-        this.emit('NewSession');
+      this.emit('StartSession');
   },
-  'NewSession' : function () {
+  'StartSession': function () {
       if(Object.keys(this.attributes).length === 0) { // Check if it's the first time the skill has been invoked
           this.attributes.launchCount = 0;
           var launchCount = 0;
-          var count = 0;
+          var count = launchCount;
        } else {
           var launchCount = this.attributes.launchCount;
           var count = launchCount;
@@ -45,17 +45,15 @@
       if (launchCount >= 3) {
           count = launchCount;
           count +=1;
-          console.log("COUNT= " + count);
           this.attributes.launchCount = count;
           this.emit('HelloPro');
         } else {
           count +=1;
-          console.log("COUNT= " + count);
           this.attributes.launchCount = count;
           this.emit('HelloNew');
         }
   },
-  'HelloNew' : function(){
+  'HelloNew': function(){
     const introAudio = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />";
     const helloNewArr = this.t('HELLONEW');
     const helloNewMsg = randomPhrase(helloNewArr);
@@ -267,7 +265,7 @@
 
       if(saidCallingFrom && fromCountry === undefined){
         fromCountry = this.attributes.fromCountry;
-      } 
+      }
       if (fromCountry === undefined || fromCountry === '') {
         var slotToElicit = 'fromCountry';
         var speechOutput = 'Where are you calling from?';
