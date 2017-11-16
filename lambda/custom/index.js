@@ -5,182 +5,22 @@
   Distributed on AS-IS basis, not responible/liable for anything.
   Redistribution strictly prohibited.
   REMOVING THIS MESSAGE STRICTLY PROHIBITED
-  version 1.7 TUESDAY 11:19AM
+  version 1.8 THURSDAY 04:23
   ---------------------------
   TERMINAL COMMANDS
   cd ./Documents/Development/alexa-skills/Phone_Booth/lambda/custom/
   ask lambda upload -f phoneBoothNA
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   */
-  const languageStrings = {
-      'en-US': {
-          translation: {
-            HELLONEW: [
-              "Hello, I'm here to help with international calls. You can say things like:"
-              + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
-              + " <say-as digits='352'></say-as>? Now, how can I help?",
-
-              "Hi, you can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
-              + " What can I do for you?",
-
-              "Hello, I'm here to help with international calls. You can say things like:"
-              + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
-              + " <say-as digits='352'></say-as>? Now, how can I help?",
-
-              "Hi, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
-              + " What can I do for you?",
-
-              "Hello, I'm here to help with international calls. You can say things like:"
-              + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
-              + " <say-as digits='49'></say-as>? Now, how can I help?"
-            ],
-            HELLOPRO: [
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?",
-              "<say-as interpret-as='interjection'>Howdy</say-as><break time='0.5s'/>, how can I help?"
-            ],
-            MORE: [
-              "Anything else?",
-              "Is there anything else you need?",
-              "Need anything else?",
-              "Anything more I can do?",
-              "What else can I do?",
-              "Can I help with anything else?",
-              "Can I assist you with anything else?",
-              "Need anything more?",
-              "Can I do anything else for you now?"
-            ],
-            ERRCON: [
-              "<say-as interpret-as='interjection'>Argh, </say-as>",
-              "<say-as interpret-as='interjection'>Aw man, </say-as>",
-              "<say-as interpret-as='interjection'>Blast, </say-as>",
-              "<say-as interpret-as='interjection'>Bummer, </say-as>",
-              "<say-as interpret-as='interjection'>Darn, </say-as>",
-              "<say-as interpret-as='interjection'>Eek, </say-as>",
-              "<say-as interpret-as='interjection'>Good grief, </say-as>",
-              "<say-as interpret-as='interjection'>Heads up, </say-as>",
-              "<say-as interpret-as='interjection'>Oh boy, </say-as>",
-              "<say-as interpret-as='interjection'>Oh snap, </say-as>",
-              "<say-as interpret-as='interjection'>Uh oh, </say-as>",
-              "<say-as interpret-as='interjection'>Whoops a daisy, </say-as>",
-            ],
-            ERRMSG : [
-              "something went wrong, please try that again.",
-              "something went wrong. Are you using a valid country name or dialing code?",
-              "I couldn\'t find anything for that, please try again.",
-              "I'm stuck, please make sure you\'re using a valid country name.",
-              "this looks wrong, please check the info you\'re giving me.",
-              "that didn\'t work, please try again.",
-              "something went wrong, please try that again.",
-              "I couldn\'t find the info. Please use a valid country name.",
-            ],
-            HELP : [
-                "You can say things like:"
-                + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
-                + " <say-as digits='352'></say-as>? Now, how can I help?",
-
-                "You can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
-                + " What can I do for you?",
-
-                "I'm here to help with international calls. You can say things like:"
-                + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
-                + " <say-as digits='352'></say-as>? Now, how can I help?",
-
-                "You can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
-                + " What can I do for you?",
-
-                "You can say things like:"
-                + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
-                + " <say-as digits='49'></say-as>? Now, how can I help?"
-            ],
-            GOODBYE : [
-              "Okay bye for now.",
-              "<say-as interpret-as='interjection'>As you wish.</say-as>",
-              "Very well, have a good day.",
-              "<say-as interpret-as='interjection'>Roger</say-as> that.",
-              "Sure. See you later.",
-              "Okay, no worries.",
-              "Okay, goodbye.",
-              "Okay, so long.",
-              "Okay, <prosody rate='fast'> buh-bye!</prosody>",
-              "Okay, take care."
-            ],
-            SKILL_NAME: 'Phone Booth',
-        },
-      },
-      'en-GB': {
-          translation: {
-              ERRCON: [
-                "<say-as interpret-as='interjection'>Aw, </say-as>",
-                "<say-as interpret-as='interjection'>Blimey, </say-as>",
-                "<say-as interpret-as='interjection'>Gosh, </say-as>",
-                "<say-as interpret-as='interjection'>Darn, </say-as>",
-                "<say-as interpret-as='interjection'>Look out, </say-as>",
-                "<say-as interpret-as='interjection'>Oh bother, </say-as>",
-                "<say-as interpret-as='interjection'>Oh boy, </say-as>",
-                "<say-as interpret-as='interjection'>Oh dear, </say-as>",
-                "<say-as interpret-as='interjection'>Oh my, </say-as>",
-                "<say-as interpret-as='interjection'>Oh snap, </say-as>",
-                "<say-as interpret-as='interjection'>Uh oh, </say-as>",
-              ],
-              ERRMSG : [
-                "something went wrong, please try that again.",
-                "something went wrong. Are you using a valid country name or dialing code?",
-                "I couldn\'t find anything for that, please try again.",
-                "I'm stuck, please make sure you\'re using a valid country name.",
-                "this looks wrong, please check the info you\'re giving me.",
-                "that didn\'t work, please try again.",
-                "something went wrong, please try that again.",
-                "I couldn\'t find the info. Please use a valid country name.",
-              ],
-              GOODBYE : [
-                "All right.",
-                "<say-as interpret-as='interjection'>As you wish.</say-as>",
-                "<say-as interpret-as='interjection'>All righty.</say-as>",
-                "<say-as interpret-as='interjection'>Cheerio.</say-as>",
-                "<say-as interpret-as='interjection'>Roger</say-as> that.",
-                "<say-as interpret-as='interjection'>Righto</say-as> goodbye.",
-                "<say-as interpret-as='interjection'>Simples</say-as>... goodbye.",
-                "Very well, take care.",
-                "All right, no worries.",
-                "All right, goodbye.",
-                "All right, so long."
-              ],
-              SKILL_NAME: 'Phone Box',
-          },
-      },
-      'de': {
-          translation: {
-              ERRCON: [
-                  'Scheisse!',
-                  'Verdammt noch mal!',
-              ],
-              ERRMSG: [
-                "something went wrong, please try that again.",
-                "something went wrong. Are you using a valid country name or dialing code?",
-                "I couldn\'t find anything for that, please try again.",
-                "I'm stuck, please make sure you\'re using a valid country name.",
-                "this looks wrong, please check the info you\'re giving me.",
-                "that didn\'t work, please try again.",
-                "something went wrong, please try that again.",
-                "I couldn\'t find the info. Please use a valid country name.",
-              ],
-              SKILL_NAME: 'Telefonzelle',
-          },
-      }
-  }
-
+  
   var card = "";
   var desc = "";
   var intprefix = "";
   var myNeuCountry = "";
+  var askedFromCountry = 0;
 
   const Alexa = require('alexa-sdk');
+  const Strings = require('./langStrings.js');
   const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
   'use strict';
@@ -188,7 +28,8 @@
   var handlers = {
 
   'LaunchRequest': function () {
-        this.emit('NewSession');
+
+        this.emit('HelloNew');
   },
   'NewSession' : function () {
         var launchCount = this.attributes.launchCount;
@@ -209,9 +50,10 @@
           this.emit('HelloNew');
         }
   },
+
   'HelloNew' : function(){
     const introAudio = "<audio src ='https://s3.amazonaws.com/snd-effects/success_07.mp3' />";
-    const helloNewArr = this.t('HELLONEW');
+    const helloNewArr = Strings.t('HELLONEW');
     const helloNewMsg = randomPhrase(helloNewArr);
     const helloNew = introAudio + helloNewMsg;
     const helloNewReprompt = "You can say help at any time.";
@@ -281,6 +123,7 @@
                         var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
                         desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
                         + " \n\n ALEXA SAID: The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
+                        this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
                         break;
                     case 'en-GB':
                         intprefix = "00";
@@ -422,11 +265,9 @@
         var speechOutput = 'Where are you calling from?';
         var repromptSpeech = 'Sorry, I didn\'t catch that, where are you calling from?';
         var updatedIntent = intentObj;
+        console.log('askedFromCountry= ' + askedFromCountry);
         this.emit(':elicitSlot', slotToElicit, speechOutput, repromptSpeech, updatedIntent);
       } else {
-
-          //get intprefix from userCountry (assume they're using their Echo device at home)
-          //to extend project use location API and intprefix API
 
           if(fromCountry === 'america' || fromCountry === 'canada' || fromCountry === 'the united states' || fromCountry === 'america' || fromCountry === 'the u.s.a.' || fromCountry ==='u.s.' || fromCountry === 'usa' || fromCountry === "the u.s.") {
             intprefix = '011';
@@ -553,15 +394,13 @@
                               break;
                             }//end switch
 
-                      }//end if daling code undefined
+                          }//end if dialingCode undefined
 
-                  });//end https
+                      });//end https
 
-          }//end elicit fromCountry
+                }//end if fromCountry undefined
 
-
-  },//end getFullPrefixIntent
-
+      },//end getFullPrefixIntent
   	  'AMAZON.HelpIntent': function () {
           this.emit('GetHelpMsg');
       },
@@ -615,10 +454,10 @@
   };
 
   exports.handler = (event, context) => {
-      const alexa = Alexa.handler(event, context);
+      var alexa = Alexa.handler(event, context);
       alexa.APP_ID = APP_ID;
       alexa.registerHandlers(handlers);
-      alexa.resources = languageStrings;
+      alexa.resources = Strings;
   	  alexa.dynamoDBTableName = 'phoneBOX'; 
       alexa.execute();
   };
