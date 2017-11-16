@@ -1,18 +1,23 @@
   /*
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  Copyright VoiceByDesign.tech 2017 All rights reserved worldwide.
-  LEGAL NOTICES GO HERE
-  Distributed on AS-IS basis, not responible/liable for anything.
-  Redistribution strictly prohibited.
-  REMOVING THIS MESSAGE STRICTLY PROHIBITED
-  version 1.8 THURSDAY 04:23
-  ---------------------------
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Copyright 2017 Voice By Design Group
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+  -------------------------------
+    version 1.8 THURSDAY 04:23
+  -------------------------------
+
   TERMINAL COMMANDS
   cd ./Documents/Development/alexa-skills/Phone_Booth/lambda/custom/
   ask lambda upload -f phoneBoothNA
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   */
-  
+
   var card = "";
   var desc = "";
   var intprefix = "";
@@ -160,8 +165,9 @@
 
           });
     },
-
-  'getCountryNameIntent': function () {
+    //Alexa, which country has the dialing code 352?
+    //Alexa, do you recognize contry code 33?
+    'getCountryNameIntent': function () {
         var response02 = "";
         //var myNeuCountry = "";
         var locale = this.event.request.locale;
@@ -238,9 +244,10 @@
            });
        },
 
-  'getFullPrefixIntent': function () {
+  //Alexa, ask Phone Booth how to call Spain.
+  //Alexa, how do I call Spain from Japan?
 
-      //generate random reprompt: "Anything else I can do?"
+  'getFullPrefixIntent': function () {
       var randomMoreArray = this.t('MORE');
       var reprompt03 = randomPhrase(randomMoreArray);
       //Error: randomSpeechcon + randomMsg
@@ -401,6 +408,7 @@
                 }//end if fromCountry undefined
 
       },//end getFullPrefixIntent
+
   	  'AMAZON.HelpIntent': function () {
           this.emit('GetHelpMsg');
       },
@@ -464,8 +472,7 @@
 
   //https://restcountries.eu/rest/v2/name/toCountry?fields=callingCodes;alpha2Code
   //User supplies a country name and gets dialing code
-  //Example: "Alexa, ask phone box what is the dialing code for belgium?"
-  //Example: "Alexa, ask phone box how do I call Mexico?"
+  //Example: "Alexa, ask phone box what is the dialing code for Belgium?"
 
   var https = require('https');
 
@@ -529,7 +536,7 @@
   }
    //https://restcountries.eu/rest/v2/callingcode/52/?fields=name
    //user supplies dialing code and gets country name
-   //Example: "Alexa, ask phone box which country has the dialing code 49?"
+   //Example: "Alexa, ask Phone Booth which country has the dialing code 49?"
 
   function httpsGetNames(myDialingCode, callback) {
 
