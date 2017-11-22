@@ -202,36 +202,38 @@ module.exports = {
           'de-DE': {
               translation: {
                 HELLONEW: [
-                  "Hello, I'm here to help with international calls. You can say things like:"
-                  + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
-                  + " <say-as interpret-as='digits'>352</say-as>? Now, how can I help?",
+                  "Hallo, Ich kann Dir mit internationalen Anrufen helfen. Zum Beispiel, kannst Du fragen:"
+                  + " wie ist die Vorwahl von Spanien, wie rufe ich Indien an, oder zu welchem Land gehört die Vorwahl <say-as interpret-as='digits'>352</say-as>? Nun, was möchtest Du wissen?",
 
-                  "Hello, you can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
-                  + " Now, what can I do for you?",
+                  "Hallo, Du kannst mich nach internationalen Anrufen fragen. Beispielsweise: wie ist die Vorwahl von Portugal, oder wie rufe ich Japan an? Was kann ich für Dich tun?",
 
-                  "Hello, I'm here to help with international calls. You can say things like:"
-                  + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
-                  + " <say-as interpret-as='digits'>352</say-as>? Now, how can I help?",
+                  "Hallo, Ich helfe Dir bei internationalen Anrufen. Beispielsweise, kannst Du mich fragen:"
+                  + " wie ist die Vorwahl von Mexiko, wie rufe ich Belgien an, oder zu welchem Land gehört die Vorwahl"
+                  + " <say-as interpret-as='digits'>52</say-as>? Wie kann ich Dir helfen?",
 
-                  "Hello, you can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
-                  + " Now, what can I do for you?",
+                  "Willkommen bei Telefonzelle. Ich helfe Dir gerne mit internationalen Anrufen. Du kannst mich fragen, wie ist die Vorwahl von Luxemburg, oder wie rufe ich Italien an? Nun, wie kann ich Dir helfen?",
 
-                  "Hello, I'm here to help with international calls. You can say things like:"
-                  + " what is the dialing code for France, how do I call Great Britain"
-                  + " <say-as interpret-as='digits'>49</say-as>? Now, how can I help?"
+                  "Willkomen in der Telefonzelle. Ich bin Spezialist für internationale Anrufe. Du kannst mich zum Beispiel fragen: wie ist die Vorwahl von Belgien, oder wie rufe ich Australien an? Was kann ich für Dich tun?"
                 ],
                 HELLOPRO: [
                   "<say-as interpret-as='interjection'>Hallo</say-as><break time='0.5s'/>, wie kann ich Dir helfen?",
-                  "Grüß Gott, wie kann ich dir helfen?",
+                  "<say-as interpret-as='interjection'>Grüß Gott</say-as>, wie kann ich dir helfen?",
                   "Ciao, wie kann ich dir helfen?",
                   "Grüßi - wie kann ich dir helfen?",
-                  "Guten tag, wie kann ich dir helfen?",
+                  "<say-as interpret-as='interjection'>Grüß Gott</say-as>, wie kann ich dir helfen?",
+                  "<say-as interpret-as='interjection'>Hallo</say-as><break time='0.5s'/>, was kann ich für Dich tun?",
+                  "<say-as interpret-as='interjection'>Grüß Gott</say-as>, was kann ich für Dich tun?",
+                  "Ciao, wie kann ich für Dich tun?",
+                  "<say-as interpret-as='interjection'>Grüß Gott</say-as> - was kann ich für Dich tun?",
+                  "<say-as interpret-as='interjection'>Grüß Gott</say-as>, was kann ich für Dich tun?",
                 ],
                 MORE: [
-                  "Kann ich sonst was tun?",
-                  "Brauchst Du noch was?",
+                  "Kann ich sonst noch etwas für Dich tun?",
+                  "Brauchst Du noch etwas?",
                   "Wie kann ich Dir sonst helfen?",
-                  "Noch einen Wünsch?",
+                  "Hast Du noch einen Wunsch?",
+                  "Noch was?",
+                  "Brauchst Du noch etwas?",
                 ],
                 ERRCON: [
                   "<say-as interpret-as='interjection'>Ach Du meine güte, </say-as>",
@@ -244,35 +246,35 @@ module.exports = {
                   "<say-as interpret-as='interjection'>Puh</say-as>",
                   "<say-as interpret-as='interjection'>Schade, </say-as>",
                   "<say-as interpret-as='interjection'>Tja, </say-as>",
+                  "<say-as interpret-as='interjection'>Oh je, </say-as>",
+                  "Oh je",
                 ],
                 ERRMSG : [
                   "etwas ist schief gelaufen, probiere\'s noch mal.",
-                  "etwas ist schief gelaufen. Hast Du den Name von einem echten Land gegeben? ",
-                  "ich konnte nichts finden, bitte versuche nochmal.",
-                  "ich weiß nicht, bitte schaue nach dem Landesname nach und probiere noch mal.",
-                  "meine info sieht verkehrt aus, bitte checke die infos die Du mir gibst.",
+                  "etwas ist schief gelaufen. Hast Du den Namen von einem echten Land genannt? ",
+                  "ich konnte nichts finden, bitte versuch\'s nochmal.",
+                  "ich weiß nicht, bitte schaue nach dem Landesnamen und probier\'s noch mal.",
+                  "meine info scheint nicht richtig zu sein, bitte checke die infos die Du mir gegeben hast.",
                   "das ging nicht, bitte versuche es nochmal.",
                   "etwas ist schief gegangen. Bitte probiere es nochmal.",
-                  "ich habe nichts gefunden. Bitte gib mir die Name von einem echten Land.",
+                  "ich habe nichts gefunden. Bitte gib mir den Namen von einem echten Land.",
                 ],
                 HELP : [
-                    "You can say things like:"
-                    + " what is the dialing code for Spain, how do I call India, or which country has the dialing code"
-                    + " <say-as interpret-as='digits'>352</say-as>? Now, how can I help?",
+                      "Du kannst mich zum Beispiel fragen: wie ist die Vorwahl von Portugal, oder wie rufe ich Japan an?"
+                      + " Nun, was kann ich für Dich tun?",
 
-                    "You can ask me things like: what is the dialing code for Portugal, or how do I call Japan?"
-                    + " What can I do for you?",
+                      "Du kannst mich zum Beispiel fragen: wie ist die Vorwahl von Mexiko, oder wie rufe ich Luxemburg an?"
+                      + " Wie kann ich Dir helfen?",
 
-                    "I'm here to help with international calls. You can say things like:"
-                    + " what is the dialing code for Mexico, how do I call Belgium, or which country has the dialing code"
-                    + " <say-as interpret-as='digits'>352</say-as>? Now, how can I help?",
+                      "Du kannst fragen: wie ist die Vorwahl von Frankreich, wie rufe ich Spanien an, oder zu welchem Land gehört die Vorwahl"
+                      + " <say-as interpret-as='digits'>44</say-as>? Was möchtest Du wissen?",
 
-                    "You can ask me things like: what is the dialing code for Luxembourg, or how do I call Germany?"
-                    + " What can I do for you?",
+                      "Du kannst fragen: wie ist die Vorwahl von Italien, wie rufe ich Australien an, oder zu welchem Land gehört die Vorwahl"
+                      + " <say-as interpret-as='digits'>30</say-as>? Wie kann ich Dir helfen?",
 
-                    "You can say things like:"
-                    + " what is the dialing code for France, how do I call Great Britain, or which country has the dialing code"
-                    + " <say-as interpret-as='digits'>49</say-as>? Now, how can I help?"
+                      "Du kannst fragen: wie ist die Vorwahl von Argentinien, wie rufe ich Peru an, oder zu welchem Land gehört die Vorwahl"
+                      + " <say-as interpret-as='digits'>55</say-as>? Nun, was kann ich für Dich tun?",
+
                   ],
                   GOODBYE : [
                     "<say-as interpret-as='interjection'>Alles klar</say-as>",
@@ -280,10 +282,11 @@ module.exports = {
                     "<say-as interpret-as='interjection'>Aber sicher</say-as>",
                     "<say-as interpret-as='interjection'>Bis bald</say-as>.",
                     "<say-as interpret-as='interjection'>Alles klar.</say-as>Tschüß.",
-                    "<say-as interpret-as='interjection'>Aber gerne</say-as>",
+                    "<say-as interpret-as='interjection'>Immer gerne</say-as>",
                     "<prosody rate='fast'>Ciao, ciao.</prosody>",
-                    "Jawohl.",
-                    "Aber gerne, ciao.",
+                    "<prosody rate='fast'>Gern geschehen.</prosody>",
+                    "<say-as interpret-as='interjection'>Jawohl, bis bald.</say-as>",
+                    "<say-as interpret-as='interjection'>Bis später.</say-as> ciao.",
                   ],
                   SKILL_NAME: 'Telefonzelle',
               },
