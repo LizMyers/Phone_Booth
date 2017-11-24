@@ -5,17 +5,17 @@ Copyright 2017 Voice By Design Group
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------
-  version 1.02 FRIDAY 10:45
+  version 1.02 FRIDAY 10:57
 -------------------------------
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
-// var card = "";
+var card = "";
 var desc = "";
 var intprefix = "";
 var myNeuCountry = "";
-var launchCount;
+var launchCounpPpt;
 var saidCallingFrom = false;
 var helloReprompt = "";
 var fromCountry = "";
@@ -269,7 +269,9 @@ var handlers = {
         //ASSUMING USER IS IN A COUNTRY WHERE ALEXA DEVICES ARE AVAILABLE
         //EDGE CASE = USER HAS IMPORTED THEIR OWN DEVICE
 
-        if(fromCountry === 'America' || fromCountry === 'Canada' || fromCountry === 'The United States' || fromCountry === 'The US' || fromCountry === 'The USA' || fromCountry ==='US' || fromCountry === 'USA' || fromCountry === 'North America' || fromCountry === 'The States') {
+        console.log ("LINE 272: FROM COUNTRY= "+fromCountry);
+
+        if(fromCountry === 'America' || fromCountry === 'Canada' || fromCountry === 'the United States' || fromCountry === 'the US' || fromCountry === 'the USA' || fromCountry ==='US' || fromCountry === 'USA' || fromCountry === 'North America' || fromCountry === 'the states' || fromCountry === 'the united states') {
           intprefix = '011';
         } else if (fromCountry === 'Japan' || fromCountry === 'japan'){
           intprefix = '010';
@@ -301,8 +303,8 @@ var handlers = {
               console.log("sent     : " + myNeuCountry);
               console.log("received : " + myCodes.myPlaceCode + ", +" + myCodes.myDialingCode );
 
-              this.attributes.fromCountry = intentObj.slots.fromCountry.value;
-              console.log("LINE 305: fromCountry: " + this.attributes.fromCountry);
+              this.attributes.fromCountry = fromCountry;
+              console.log("LINE 305: ATTRIBUTES fromCountry: " + fromCountry);
 
               if (myCodes.myDialingCode === '' || myCodes.myDialingCode === undefined) {
                   //undefined dialingCode means toCountry didn't match valid country slot
@@ -445,6 +447,7 @@ exports.handler = (event, context) => {
 //https://restcountries.eu/rest/v2/name/toCountry?fields=callingCodes;alpha2Code
 //User supplies a country name and gets dialing code
 //Example: "Alexa, ask phone box what is the dialing code for Belgium?"
+//path: '/rest/v2/name/' + encodeURIComponent(myData) + "?fields=callingCodes;alpha2Code;",
 
 var https = require('https');
 
