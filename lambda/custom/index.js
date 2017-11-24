@@ -17,6 +17,8 @@ var intprefix = "";
 var myNeuCountry = "";
 var launchCount;
 var saidCallingFrom = false;
+var helloReprompt = "";
+var fromCountry = "";
 
 const Alexa = require('alexa-sdk');
 const Strings = require('./langStrings.js');
@@ -54,7 +56,7 @@ var handlers = {
     const helloNewArr = this.t('HELLONEW');
     const helloNewMsg = randomPhrase(helloNewArr);
     const helloNew = introAudio + helloNewMsg;
-    const helloReprompt = this.t(HELLO_REPROMPT);
+    var helloReprompt = this.t('HELLO_REPROMPT');
     this.emit(':ask', helloNew, helloReprompt);
 },
 'HelloPro':function(){
@@ -62,7 +64,7 @@ var handlers = {
     const helloProArr = this.t('HELLOPRO');
     const helloProMsg = randomPhrase(helloProArr);
     const helloPro = introAudio + helloProMsg;
-    const helloReprompt = this.t(HELLO_REPROMPT);
+    var helloReprompt = this.t('HELLO_REPROMPT');
     this.emit(':ask', helloPro, helloReprompt);
 },
 'getCountryCodeIntent': function () {
@@ -81,25 +83,19 @@ var handlers = {
     var toCountry = this.event.request.intent.slots.toCountry.value;
     console.log("LINE86: TO_COUNTRY:" + toCountry);
 
-    resolveCanonical(checkSlot) ;
-    console.log("CHECKED SLOT VALUE: " + resolveCanonical(checkSlot);
-
     //HOW DO I CALL Germany
-    // resolveCanonical(toCountry, (checkSlot) => {
-    //   console.log("CHECKED SLOT VALUE: " + checkSlot);
-    //
-    //   callback (checkSlot);
-    // });
+    var mySlotCheck = resolveCanonical(toCountry);
+    console.log("LINE 86: mySlotCHECK: " + mySlotCheck);
 
-    if (toCountry == 'England'|| toCountry == 'scotland'|| toCountry == 'wailes') {
-        myNeuCountry === "great britain";
-    } else if (toCountry === "Vatican city") {
+    if (toCountry === 'England'|| toCountry === 'Scotland'|| toCountry === 'Wailes' || toCountry === 'whales' || toCountry === 'U.K.' || toCountry === 'The UK') {
+        myNeuCountry = "great britain";
+    } else if (toCountry === "vatican city") {
         myNeuCountry = "the vatican";
-    } else if (toCountry == 'the states' || toCountry == 'The United States' || toCountry == 'the united states' || toCountry == 'North America' || toCountry == 'America') {
+    } else if (toCountry === 'the States' || toCountry === 'the USA' || toCountry === 'The US' || toCountry === 'the United States' || toCountry === 'North America' || toCountry === 'America' || toCountry === 'the United States of America' || toCountry === 'the USA' || toCountry === 'the u.s.a.' || toCountry === ' the states' || toCountry === 'the u.s.') {
         myNeuCountry = "usa";
-    } else if (toCountry == 'sea shells') {
+    } else if (toCountry === 'sea shells') {
         myNeuCountry = "seychelles";
-    } else if (toCountry == 'hungry' || toCountry == 'Hungry') {
+    } else if (toCountry === 'hungry' || toCountry === 'Hungry') {
         myNeuCountry = "hungary";
     } else {
         myNeuCountry = toCountry;
@@ -113,6 +109,9 @@ var handlers = {
                   this.emit(':ask', randomErrorMessage, reprompt01);
               } else {
                     myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
+                    if(myPrintCountry === 'Usa'){
+                      myPrintCountry = 'USA';
+                    }
                     var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
                     var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
                     var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
@@ -131,18 +130,18 @@ var handlers = {
                   case 'en-CA':
                       var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
-                      + " \n\n The dialing code for " + myPrintCountry + " is: " + myCodes.myDialingCode + ".";
+                      + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                       this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
                       break;
                   case 'en-GB':
                   case 'en-IN':
                       response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
                       desc = "LANDLINE: 00 " + myCodes.myDialingCode + " \n MOBILE: +" + myCodes.myDialingCode
-                      + " \n\n The dialing code for " + myPrintCountry + " is: " + myCodes.myDialingCode + ".";
+                      + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                       this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
                       break;
                   case 'de-DE':
-                      response01 = "Die Landesvorwahl für " + myPrintCountry + " ist :" + myCodes.myDialingCode + "." ;
+                      response01 = "Die Landesvorwahl für " + myPrintCountry + " ist" + myCodes.myDialingCode + "." ;
                       desc = "FESTNETZ: 00 " + nDialingCode + " \n HANDY: +" + nDialingCode
                       + " \n\n Die Landesvorwahl für " + myPrintCountry + " ist: " + myCodes.myDialingCode + ".";
                       this.emit(':askWithCard', response01, reprompt01, card.title, card.desc, card.image);
@@ -150,7 +149,7 @@ var handlers = {
                   default:
                       response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as> .";
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
-                      + " \n\n The dialing code for " + myPrintCountry + " is: " + myCodes.myDialingCode + ".";
+                      + " \n\n The dialing code for " + myPrintCountry + " i " + myCodes.myDialingCode + ".";
                       this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
                       break;
 
@@ -185,7 +184,11 @@ var handlers = {
               if (countryName.myPlaceName === "" || countryName.myPlaceName === undefined) {
                     this.emit(':ask', randomErrorMessage, reprompt02);
               } else {
-                    var myCardTitle = countryName.myPlaceName + ' ' + '+' + myDialingCode;
+                    var myCardTitle = toTitleCase(countryName.myPlaceName) + ' ' + '+' + myDialingCode;
+                    var placeName = toTitleCase(countryName.myPlaceName);
+                    if(countryName.myPlaceName === 'Usa'){
+                      countryName.myPlaceName = 'USA';
+                    }
                     var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + countryName.myPlaceCode +'.png';
                     var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + countryName.myPlaceCode +'.png';
                     card = {
@@ -201,28 +204,28 @@ var handlers = {
             switch(locale) {
                 case 'en-US':
                 case 'en-CA':
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName + '.';
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.';
                     desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: " + myDialingCode
-                    + " \n\n The country with dialing code: " + myDialingCode + ", is: " + countryName.myPlaceName + ".";
+                    + " \n\n The country with dialing code " + myDialingCode + ", is " + countryName.myPlaceName + ".";
                     this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                     break;
                 case 'en-GB':
                 case 'en-IN':
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName + '.';
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.';
                     desc = "LANDLINE: 00 " + myDialingCode + " \n MOBILE: " + myDialingCode
-                    + " \n\n The country with dialing code: " + myDialingCode + " is: " + countryName.myPlaceName + ".";
+                    + " \n\n The country with dialing code " + myDialingCode + " is " + countryName.myPlaceName + ".";
                     this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                     break;
                 case 'de-DE':
-                    response02 = "Das Land mit Vorwahl <say-as interpret-as='digits'> " + myDialingCode + "</say-as> ist: " + countryName.myPlaceName + '.';
+                    response02 = "Das Land mit Vorwahl <say-as interpret-as='digits'> " + myDialingCode + "</say-as> ist: " + placeName + '.';
                     desc = "FESTNETZ: 00 " + myDialingCode + " \n HANDY: " + myDialingCode
-                    + " \n\n Das Land mit Vorwahl: " + myDialingCode + " ist: " + countryName.myPlaceName + ".";
+                    + " \n\n Das Land mit Vorwahl " + myDialingCode + " ist " + countryName.myPlaceName + ".";
                     this.emit(':askWithCard', responseDE02, repromptDE02, card.title, desc, card.image);
                     break;
                 default:
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + countryName.myPlaceName + '.';
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.';
                     desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: " + myDialingCode
-                    + " \n\n The country with dialing code: " + myDialingCode + " is: " + countryName.myPlaceName + ".";
+                    + " \n\n The country with dialing code " + myDialingCode + " is " + countryName.myPlaceName + ".";
                     this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
                     break;
                }//end switch
@@ -241,25 +244,24 @@ var handlers = {
     var randomErrCon = randomPhrase(errConArr);
     var randomErrMsg = randomPhrase(errMsgArr);
     var randomErrorMessage = randomErrCon + randomErrMsg;
-    //other vars
     var response03 = "";
     var countryName = "";
     var myDialingCode = "";
     var prettyCode="";
     var locale = this.event.request.locale;
-    const intentObj = this.event.request.intent;
+    var intentObj = this.event.request.intent;
     var toCountry = intentObj.slots.toCountry.value;
     var fromCountry = intentObj.slots.fromCountry.value;
+    //var saidCallingFrom = this.attributes.saidCallingFrom;
 
-    if(saidCallingFrom && fromCountry === undefined){
-      //fromCountry = intentObj.slots.fromCountry.value;
+    if(saidCallingFrom && fromCountry === undefined) {
       fromCountry = this.attributes.fromCountry;
-      console.log(fromCountry);
     }
-    if (fromCountry === undefined || fromCountry === '') {
+
+    if(fromCountry === undefined) {
       var slotToElicit = 'fromCountry';
-      var speechOutput = this.t(ELICIT_OUTPUT);
-      var repromptSpeech = this.t(ELICIT_REPROMPT);
+      var speechOutput = this.t('ELICIT_OUTPUT');
+      var repromptSpeech = this.t('ELICIT_REPROMPT');
       var updatedIntent = intentObj;
       saidCallingFrom = true;
       this.emit(':elicitSlot', slotToElicit, speechOutput, repromptSpeech, updatedIntent);
@@ -269,25 +271,23 @@ var handlers = {
 
         if(fromCountry === 'America' || fromCountry === 'Canada' || fromCountry === 'The United States' || fromCountry === 'The US' || fromCountry === 'The USA' || fromCountry ==='US' || fromCountry === 'USA' || fromCountry === 'North America' || fromCountry === 'The States') {
           intprefix = '011';
-        } else if (fromCountry === 'India' || fromCountry === 'Germany'  || fromCountry === 'The UK' || fromCountry === 'England' || fromCountry === 'Great Britain' || fromCountry === 'Britain' || fromCountry === 'United Kingdom' || fromCountry === 'The United Kingdom' || fromCountry === 'Austria' || fromCountry === 'Scotland' || fromCountry === 'Wailes' || fromCountry === 'Ireland' || fromCountry === 'Northern Ireland'){
-          intprefix = '00';
         } else if (fromCountry === 'Japan' || fromCountry === 'japan'){
           intprefix = '010';
+          fromCountry === 'Japan';
         } else if (fromCountry === 'Australia'){
           intprefix = '0011';
         } else {
           //all of europe and majority of world have this int'l prefix
           intprefix = '00';
+          fromCountry === toTitleCase(fromCountry);
         }
 
         //clean up toCountry name
-        if (toCountry === 'america' || toCountry === 'north america' || toCountry === 'the u.s.' || toCountry === 'united states'){
-          myNeuCountry === 'usa';
-        } else if (toCountry === 'england' || toCountry === 'the u.k.' || toCountry === 'scotland'|| toCountry === 'wailes') {
-          myNeuCountry === "great britain";
+        if (toCountry === 'England'|| toCountry === 'Scotland'|| toCountry === 'Wailes' || toCountry === 'whales' || toCountry === 'U.K.' || toCountry === 'The UK') {
+            myNeuCountry = "great britain";
         } else if (toCountry === "vatican city") {
             myNeuCountry = "the vatican";
-        } else if (toCountry === 'the states' || toCountry === 'the united states' || toCountry === 'The States' || toCountry === "The U.S." || toCountry === "North America") {
+        } else if (toCountry === 'the States' || toCountry === 'the USA' || toCountry === 'The US' || toCountry === 'the United States' || toCountry === 'North America' || toCountry === 'America' || toCountry === 'the United States of America' || toCountry === 'the USA' || toCountry === 'the u.s.a.' || toCountry === ' the states' || toCountry === 'the u.s.') {
             myNeuCountry = "usa";
         } else if (toCountry === 'sea shells') {
             myNeuCountry = "seychelles";
@@ -301,11 +301,17 @@ var handlers = {
               console.log("sent     : " + myNeuCountry);
               console.log("received : " + myCodes.myPlaceCode + ", +" + myCodes.myDialingCode );
 
+              this.attributes.fromCountry = intentObj.slots.fromCountry.value;
+              console.log("LINE 305: fromCountry: " + this.attributes.fromCountry);
+
               if (myCodes.myDialingCode === '' || myCodes.myDialingCode === undefined) {
                   //undefined dialingCode means toCountry didn't match valid country slot
                   this.emit(':ask', randomErrorMessage, reprompt03);
               } else {
                     myPrintCountry = toTitleCase(myNeuCountry);
+                    if (myPrintCountry === 'Usa'){
+                      myPrintCountry = 'USA';
+                    }
                     var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
                     var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
                     var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
@@ -318,12 +324,11 @@ var handlers = {
                             'largeImageUrl' : lgImgUrl
                         }
                     };
-                      this.attributes.fromCountry = intentObj.slots.fromCountry.value;
-                      this.attributes.toCountry = intentObj.slots.toCountry.value;
 
                     var nCountryName = myPrintCountry;
                     var nDialingCode = myCodes.myDialingCode;
                     var nPlaceCode = myCodes.myPlaceCode;
+                    var callingFrom = toTitleCase(fromCountry);
 
                     switch(locale) {
                         case 'en-US':
@@ -334,7 +339,7 @@ var handlers = {
                             + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode
                             + "</prosody></say-as>. Check your device for these details and more.";
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
-                            + " \n\n When calling from " + fromCountry + ", first dial the international prefix: " + intprefix
+                            + " \n\n When calling from " + callingFrom + ", first dial the international prefix: " + intprefix
                             + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
                             this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                             break;
@@ -346,7 +351,7 @@ var handlers = {
                             + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode
                             + "</prosody></say-as>. Check your device for these details and more.";
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
-                            + " \n\n When calling from "+fromCountry+", first dial the international prefix: " + intprefix
+                            + " \n\n When calling from "+callingFrom+", first dial the international prefix: " + intprefix
                             + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
                             this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                             break;
@@ -355,7 +360,7 @@ var handlers = {
                             response03 = "Von " + fromCountry + " wähle zuerst: "
                             + "<say-as interpret-as='digits'>" + intprefix + "</say-as> und dann" + prettyCode + " für " + nCountryName + ". Nochmal, das lautet <say-as interpret-as ='digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Ich habe diese Detaillen und mehr an Deinem app geschickt.";
                             desc = "FESTNETZ:  " + intprefix + " " + nDialingCode + " \n HANDY: +" + nDialingCode
-                            + " \n\n Aus " + fromCountry + ", wähle zuerst: " + intprefix
+                            + " \n\n Aus " + callingFrom + ", wähle zuerst: " + intprefix
                             + ", und dann die Landesvorwahl: " + nDialingCode + " für " + toCountry + ".";
                             this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                             break;
@@ -366,7 +371,7 @@ var handlers = {
                             + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode
                             + "</prosody></say-as>. Check your device for these details and more.";
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
-                            + " \n\n When calling from " + fromCountry + ", first dial the international prefix: " + intprefix
+                            + " \n\n When calling from " + callingFrom + ", first dial the international prefix: " + intprefix
                             + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
                             this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
                             break;
@@ -386,7 +391,7 @@ var handlers = {
     'GetHelpMsg': function () {
       const helpArr = this.t('HELP');
       const helpOutput = randomPhrase(helpArr);
-      const helpReprompt = this.t(HELP_REPROMPT) + helpOutput;
+      const helpReprompt = this.t('HELP_REPROMPT') + helpOutput;
       this.emit(':ask', helpOutput, helpReprompt);
     },
     'GetMoreMsg': function () {
@@ -422,8 +427,8 @@ var handlers = {
         this.emit(':saveState', true);//save attributes to db on session end
     },
   'Unhandled':function () {
-        var response04 = this.t(UNHANDLED_OUTPUT);
-        var reprompt04 = this.t(UNHANDLED_REPROMPT);
+        var response04 = this.t('UNHANDLED_OUTPUT');
+        var reprompt04 = this.t('UNHANDLED_REPROMPT');
         this.emit(':ask', repsonse04, reprompt04);
     }
 };
@@ -571,9 +576,9 @@ function resolveCanonical(slot){
     try{
     var canonical = slot.resolutions.resolutionsPerAuthority[0].values[0].value.name;
   }catch(err){
-      //console.log("from line 355: " + err.message);
+      console.log("from line 355: " + err.message);
       var canonical = slot.value;
-     // console.log("canoncial var at line 362: " + canonical);
+     console.log("canoncial var at line 362: " + canonical);
   };
   return canonical;
 };

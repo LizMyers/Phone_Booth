@@ -104,7 +104,7 @@ module.exports = {
               ELICIT_REPROMPT: 'Sorry, I didn\'t catch that. Where are you calling from?',
               UNHANDLED_OUTPUT: 'I didn\'t quite understand what you wanted. Do you want to try something else?',
               UNHANDLED_REPROMPT: 'How can I help?',
-              HELP_REPROMPT: 'Are you still there?'
+              HELP_REPROMPT: 'Are you still there?',
             },
           },
         'en': {
