@@ -1261,10 +1261,14 @@
             }
           },
           {
-            "id": null,
+            "id": "SOLOMON_ISLANDS",
             "name": {
-              "value": "the solomon islands",
-              "synonyms": []
+              "value": "solomon islands",
+              "synonyms": [
+                "the soloman islands",
+                "the solomon islands",
+                "soloman islands"
+              ]
             }
           },
           {
@@ -1452,6 +1456,13 @@
                 "Wailes"
               ]
             }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the solomon islands",
+              "synonyms": []
+            }
           }
         ]
       }
@@ -1547,9 +1558,7 @@
           "what country has calling code {dialingCode}",
           "which country has {dialingCode}",
           "which country has dialing code {dialingCode}",
-          "which country has country code {dialingCode}",
-          "which country has the dialing code {dialingCode}",
-          "which country has the country code {dialingCode}"
+          "which country has country code {dialingCode}"
         ],
         "slots": [
           {
@@ -1561,17 +1570,7 @@
       {
         "name": "getFullPrefixIntent",
         "samples": [
-          "how to call {toCountry} from {fromCountry}",
-          "how do I call {toCountry}",
-          "how to call {toCountry}",
-          "how to dial {toCountry}",
-          "how do I dial {toCountry}",
-          "how do I dial {toCountry} from {fromCountry}",
-          "how to dial {toCountry} from {fromCountry}",
-          "how to phone {toCountry} from {fromCountry}",
-          "how to phone {toCountry}",
-          "how do I phone {toCountry}",
-          "how do I phone {toCountry} from {fromCountry}"
+          "how to call {toCountry} from {fromCountry}"
         ],
         "slots": [
           {
