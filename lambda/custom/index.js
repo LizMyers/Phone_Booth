@@ -98,6 +98,14 @@ var handlers = {
         myNeuCountry = "seychelles";
     } else if (toCountry === 'hungry' || toCountry === 'Hungry') {
         myNeuCountry = "hungary";
+    } else if (toCountry === 'North Korea'){
+        myNeuCountry = "Korea (Democratic People's Republic Of)";
+    } else if (toCountry === 'South Korea'){
+        myNeuCountry = "Korea (Republic Of)";
+    } else if (toCountry === 'Korea'){
+        myNeuCountry = 'Korea (Republic Of)'
+    } else if (toCountry === 'The Solomon Islands' || toCountry === 'The Soloman Islands' || toCountry === 'Soloman Islands' || toCountry === 'Solomon Islands'){
+        myNeuCountry = "Solomon Islands";
     } else {
         myNeuCountry = toCountry;
     }
@@ -109,33 +117,42 @@ var handlers = {
               if (myCodes.myDialingCode === "" || myCodes.myDialingCode === undefined) {
                   this.emit(':ask', randomErrorMessage, reprompt01);
               } else {
-                    myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
-                    if(myPrintCountry === 'Usa'){
-                      myPrintCountry = 'USA';
+                myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
+                console.log("MY_PRINT_COUNTRY:" + myPrintCountry);
+                if(myPrintCountry === 'Usa'){
+                   myPrintCountry = 'USA';
+                }
+                if (myPrintCountry === "Korea (Democratic People's Republic Of)"){
+                    myPrintCountry = 'North Korea';
+                    console.log("MY_PRINT_COUNTRY:" + myPrintCountry);
+                }
+                if (myPrintCountry === "Korea (Republic Of)"){
+                    myPrintCountry = 'South Korea';
+                    console.log("MY_PRINT_COUNTRY:" + myPrintCountry);
+                }
+                var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
+                var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
+                var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
+                var card = {
+                    'type' : 'Standard',
+                    'title' : myCardTitle,
+                    'desc' : ' ',
+                    'image' : {
+                        'smallImageUrl' : smImgUrl,
+                        'largeImageUrl' : lgImgUrl
                     }
-                    var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
-                    var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
-                    var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
-                    var card = {
-                        'type' : 'Standard',
-                        'title' : myCardTitle,
-                        'desc' : ' ',
-                        'image' : {
-                            'smallImageUrl' : smImgUrl,
-                            'largeImageUrl' : lgImgUrl
-                        }
-                    };
-              switch(locale) {
+                };
+                switch(locale) {
                   case 'en-US':
                   case 'en-CA':
-                      var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>." + extroAudio;
+                      var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + ". </say-as>" + extroAudio;
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
                       + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode
                       this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
                   case 'en-GB':
                   case 'en-IN':
-                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>." + extroAudio;;
+                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + ". </say-as>" + extroAudio;;
                       desc = "LANDLINE: 00 " + myCodes.myDialingCode + " \n MOBILE: +" + myCodes.myDialingCode
                       + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                       this.emit(':tellWithCard', response01, card.title, desc, card.image);
@@ -147,13 +164,13 @@ var handlers = {
                       this.emit(':tellWithCard', response01, card.title, card.desc, card.image);
                       break;
                   default:
-                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>." + extroAudio;;
+                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + ". </say-as> . " + extroAudio;;
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
                       + " \n\n The dialing code for " + myPrintCountry + " i " + myCodes.myDialingCode + ".";
                       this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
 
-              }//end switch
+                }//end switch
 
             }//end if
 
@@ -490,13 +507,9 @@ function httpsGetCodes(myData, callback) {
           var myCodes = {
               'myPlaceCode' : myPlaceCode,
               'myDialingCode' : myDialingCode,
-              'myPlaceName' : myData
-          }
-
-          console.log("myPlaceName: + myCodes.myPlaceName");
-
+              'myPlaceName' : myData,
+          };
           if(myPlaceCode === 'kz') {
-            console.log("Correcting Kazakhstan");
             myCodes.myDialingCode = '76';
             callback(myCodes);
           } else if (myDialingCode === '\\\"status\\\":404,\\\"message\\\":\\\"Not Foun' || myDialingCode === undefined || myDialingCode === "") {
