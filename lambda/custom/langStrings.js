@@ -99,7 +99,7 @@ module.exports = {
                 "Okay, take care."
               ],
               SKILL_NAME: 'Phone Booth',
-              HELLO_REPROMPT : 'You can say help at any time.',
+              HELLO_REPROMPT : 'If you aren\'t quite sure what to do, you can say help at any time.',
               ELICIT_OUTPUT : 'Where are you calling from?',
               ELICIT_REPROMPT: 'Sorry, I didn\'t catch that. Where are you calling from?',
               UNHANDLED_OUTPUT: 'I didn\'t quite understand what you wanted. Do you want to try something else?',
