@@ -5,7 +5,7 @@ Copyright 2017 Voice By Design Group
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------
-  version 1.02 FRIDAY 10:57
+  version 1.03 SUNDAY 11:49
 -------------------------------
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,6 +19,7 @@ var launchCounpPpt;
 var saidCallingFrom = false;
 var helloReprompt = "";
 var fromCountry = "";
+const extroAudio = "<audio src ='https://s3.amazonaws.com/snd-effects/magic_crystal_25.mp3' />"
 
 const Alexa = require('alexa-sdk');
 const Strings = require('./langStrings.js');
@@ -124,33 +125,32 @@ var handlers = {
                             'largeImageUrl' : lgImgUrl
                         }
                     };
-
               switch(locale) {
                   case 'en-US':
                   case 'en-CA':
-                      var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
+                      var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>." + extroAudio;
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
-                      + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
-                      this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
+                      + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode
+                      this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
                   case 'en-GB':
                   case 'en-IN':
-                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>. ";
+                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>." + extroAudio;;
                       desc = "LANDLINE: 00 " + myCodes.myDialingCode + " \n MOBILE: +" + myCodes.myDialingCode
                       + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
-                      this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
+                      this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
                   case 'de-DE':
-                      response01 = "Die Landesvorwahl für " + myPrintCountry + " ist" + myCodes.myDialingCode + "." ;
+                      response01 = "Die Landesvorwahl für " + myPrintCountry + " ist" + myCodes.myDialingCode + "." + extroAudio;;
                       desc = "FESTNETZ: 00 " + nDialingCode + " \n HANDY: +" + nDialingCode
                       + " \n\n Die Landesvorwahl für " + myPrintCountry + " ist: " + myCodes.myDialingCode + ".";
-                      this.emit(':askWithCard', response01, reprompt01, card.title, card.desc, card.image);
+                      this.emit(':tellWithCard', response01, card.title, card.desc, card.image);
                       break;
                   default:
-                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as> .";
+                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>." + extroAudio;;
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
                       + " \n\n The dialing code for " + myPrintCountry + " i " + myCodes.myDialingCode + ".";
-                      this.emit(':askWithCard', response01, reprompt01, card.title, desc, card.image);
+                      this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
 
               }//end switch
@@ -162,7 +162,7 @@ var handlers = {
   //Alexa, which country has the dialing code 352?
   //Alexa, do you recognize contry code 33?
   'getCountryNameIntent': function () {
-      var response02 = "";
+      var response02 = "" + "<break time='1s'>" + reprompt02;
       //var myNeuCountry = "";
       var locale = this.event.request.locale;
       //generate random reprompt: "Anything else I can do?"
@@ -204,29 +204,29 @@ var handlers = {
             switch(locale) {
                 case 'en-US':
                 case 'en-CA':
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.';
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;;
                     desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: " + myDialingCode
                     + " \n\n The country with dialing code " + myDialingCode + ", is " + countryName.myPlaceName + ".";
-                    this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
+                    this.emit(':tellWithCard', response02, card.title, desc, card.image);
                     break;
                 case 'en-GB':
                 case 'en-IN':
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.';
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;;
                     desc = "LANDLINE: 00 " + myDialingCode + " \n MOBILE: " + myDialingCode
                     + " \n\n The country with dialing code " + myDialingCode + " is " + countryName.myPlaceName + ".";
-                    this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
+                    this.emit(':tellWithCard', response02, card.title, desc, card.image);
                     break;
                 case 'de-DE':
-                    response02 = "Das Land mit Vorwahl <say-as interpret-as='digits'> " + myDialingCode + "</say-as> ist: " + placeName + '.';
+                    response02 = "Das Land mit Vorwahl <say-as interpret-as='digits'> " + myDialingCode + "</say-as> ist: " + placeName + '.' + extroAudio;;
                     desc = "FESTNETZ: 00 " + myDialingCode + " \n HANDY: " + myDialingCode
                     + " \n\n Das Land mit Vorwahl " + myDialingCode + " ist " + countryName.myPlaceName + ".";
-                    this.emit(':askWithCard', responseDE02, repromptDE02, card.title, desc, card.image);
+                    this.emit(':tellWithCard', responseDE02, card.title, desc, card.image);
                     break;
                 default:
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.';
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;;
                     desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: " + myDialingCode
                     + " \n\n The country with dialing code " + myDialingCode + " is " + countryName.myPlaceName + ".";
-                    this.emit(':askWithCard', response02, reprompt02, card.title, desc, card.image);
+                    this.emit(':tellWithCard', response02, card.title, desc, card.image);
                     break;
                }//end switch
              }//end if
@@ -244,7 +244,7 @@ var handlers = {
     var randomErrCon = randomPhrase(errConArr);
     var randomErrMsg = randomPhrase(errMsgArr);
     var randomErrorMessage = randomErrCon + randomErrMsg;
-    var response03 = "";
+    var response03 = "" + "<break time='1s'>" + reprompt03;
     var countryName = "";
     var myDialingCode = "";
     var prettyCode="";
@@ -309,6 +309,8 @@ var handlers = {
               if (myCodes.myDialingCode === '' || myCodes.myDialingCode === undefined) {
                   //undefined dialingCode means toCountry didn't match valid country slot
                   this.emit(':ask', randomErrorMessage, reprompt03);
+              } else if (myCodes.myPlaceCode === 'kz'){
+                myCodes.myDialingCode = '76 or 77';
               } else {
                     myPrintCountry = toTitleCase(myNeuCountry);
                     if (myPrintCountry === 'Usa'){
@@ -339,11 +341,11 @@ var handlers = {
                             response03 = "When calling from " + fromCountry + " you need to dial "
                             + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                             + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode
-                            + "</prosody></say-as>. Check your device for these details and more.";
+                            + "</prosody></say-as>. Check your device for these details and more." + extroAudio;
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
                             + " \n\n When calling from " + callingFrom + ", first dial the international prefix: " + intprefix
                             + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
-                            this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
+                            this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                         case 'en-GB':
                         case 'en-IN':
@@ -351,31 +353,30 @@ var handlers = {
                             response03 = "When calling from " + fromCountry + " you need to dial "
                             + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
                             + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode
-                            + "</prosody></say-as>. Check your device for these details and more.";
+                            + "</prosody></say-as>. Check your device for these details and more." + extroAudio;
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
                             + " \n\n When calling from "+callingFrom+", first dial the international prefix: " + intprefix
                             + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
-                            this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
+                            this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                         case 'de-DE':
                             prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                             response03 = "Von " + fromCountry + " wähle zuerst: "
-                            + "<say-as interpret-as='digits'>" + intprefix + "</say-as> und dann" + prettyCode + " für " + nCountryName + ". Nochmal, das lautet <say-as interpret-as ='digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Ich habe diese Detaillen und mehr an Deinem app geschickt.";
+                            + "<say-as interpret-as='digits'>" + intprefix + "</say-as> und dann" + prettyCode + " für " + nCountryName + ". Nochmal, das lautet <say-as interpret-as ='digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Ich habe diese Detaillen und mehr an Deinem app geschickt."  + extroAudio;
                             desc = "FESTNETZ:  " + intprefix + " " + nDialingCode + " \n HANDY: +" + nDialingCode
                             + " \n\n Aus " + callingFrom + ", wähle zuerst: " + intprefix
                             + ", und dann die Landesvorwahl: " + nDialingCode + " für " + toCountry + ".";
-                            this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
+                            this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                         default:
                             prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
                             response03 = "When calling from " + fromCountry + " you need to dial "
                             + "<say-as interpret-as='digits'>" + intprefix + "</say-as>. "
-                            + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode
-                            + "</prosody></say-as>. Check your device for these details and more.";
+                            + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Check your device for these details and more." + extroAudio;
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
                             + " \n\n When calling from " + callingFrom + ", first dial the international prefix: " + intprefix
                             + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
-                            this.emit(':askWithCard', response03, reprompt03, card.title, desc, card.image);
+                            this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                           }//end switch
 
@@ -494,7 +495,11 @@ function httpsGetCodes(myData, callback) {
 
           console.log("myPlaceName: + myCodes.myPlaceName");
 
-          if (myDialingCode === '\\\"status\\\":404,\\\"message\\\":\\\"Not Foun' || myDialingCode === undefined || myDialingCode === "") {
+          if(myPlaceCode === 'kz') {
+            console.log("Correcting Kazakhstan");
+            myCodes.myDialingCode = '76';
+            callback(myCodes);
+          } else if (myDialingCode === '\\\"status\\\":404,\\\"message\\\":\\\"Not Foun' || myDialingCode === undefined || myDialingCode === "") {
               console.log("LOOKOUT - WE HAVE A BUG!!" + myCodes.myDialingCode);
               myCodes.myDialingCode = undefined;
               callback(myCodes);
@@ -540,6 +545,11 @@ function httpsGetNames(myDialingCode, callback) {
            console.log("HERE IS MY DATA STRING: " + myData);
 
            switch (myDialingCode) { //reformat long strings coming back from service
+             case "61":
+                var myPlaceName = "Australia";
+                var myPlaceCode = "au";
+                  console.log("HERE IS MY PLACE NAME: " + myPlaceName);
+                break;
              case "44":
                 var myPlaceName = "Great Britain";
                   console.log("HERE IS MY PLACE NAME: " + myPlaceName);
@@ -556,6 +566,9 @@ function httpsGetNames(myDialingCode, callback) {
            //2 letter ISO code
            if (myPlaceName === "North America"){
              var myPlaceCode = "northAm";
+             console.log("PLACE CODE: " + myPlaceCode);
+           } else if (myPlaceName === "Australia"){
+             var myPlaceCode = "au";
              console.log("PLACE CODE: " + myPlaceCode);
            } else {
              var myPlaceCode = myData.split(":").pop().toLowerCase().slice(2,4);

@@ -1,7 +1,3 @@
-
-/*DISCLAIMER + COPYRIGHT GO HERE
-Last updated: 11-Nov-17 13:27 en-IN
-By Liz Myers*/
 {
   "languageModel": {
     "types": [
@@ -415,21 +411,32 @@ By Liz Myers*/
             }
           },
           {
-            "id": null,
+            "id": "GREAT_BRITAIN",
             "name": {
               "value": "great britain",
               "synonyms": [
-                "england",
                 "the u.k.",
-                "britain"
+                "britain",
+                "great britain",
+                "the u.k.",
+                "u.k.",
+                "england",
+                "blighty",
+                "scotland",
+                "wailes",
+                "whales",
+                "Scotland",
+                "Wailes"
               ]
             }
           },
           {
-            "id": null,
+            "id": "GREECE",
             "name": {
               "value": "greece",
-              "synonyms": []
+              "synonyms": [
+                "grease"
+              ]
             }
           },
           {
@@ -1245,10 +1252,12 @@ By Liz Myers*/
             }
           },
           {
-            "id": null,
+            "id": "SEYCHELLES",
             "name": {
               "value": "the seychelles",
-              "synonyms": []
+              "synonyms": [
+                "sea shells"
+              ]
             }
           },
           {
@@ -1259,30 +1268,38 @@ By Liz Myers*/
             }
           },
           {
-            "id": null,
+            "id": "EMIRATES",
             "name": {
               "value": "the united arab emirates",
-              "synonyms": []
-            }
-          },
-          {
-            "id": null,
-            "name": {
-              "value": "the united states",
               "synonyms": [
-                "the u.s.",
-                "the states",
-                "america",
-                "north america"
+                "u.a.e"
               ]
             }
           },
           {
-            "id": null,
+            "id": "USA",
+            "name": {
+              "value": "the united states",
+              "synonyms": [
+                "the united states",
+                "the u.s.",
+                "u.s.",
+                "america",
+                "north america",
+                "united states",
+                "states",
+                "the states"
+              ]
+            }
+          },
+          {
+            "id": "VATICAN",
             "name": {
               "value": "the vatican",
               "synonyms": [
-                "vatican city"
+                "vatican city",
+                "the vatican",
+                "vatican"
               ]
             }
           },
@@ -1311,9 +1328,7 @@ By Liz Myers*/
             "id": null,
             "name": {
               "value": "trinidad",
-              "synonyms": [
-                "trinidad and tobago"
-              ]
+              "synonyms": []
             }
           },
           {
@@ -1420,6 +1435,23 @@ By Liz Myers*/
               "value": "zimbabwe",
               "synonyms": []
             }
+          },
+          {
+            "id": "UK",
+            "name": {
+              "value": "the united kingdom",
+              "synonyms": [
+                "scotland",
+                "wailes",
+                "great britain",
+                "britain",
+                "england",
+                "ireland",
+                "whales",
+                "Scotland",
+                "Wailes"
+              ]
+            }
           }
         ]
       }
@@ -1451,7 +1483,11 @@ By Liz Myers*/
           "no thank you",
           "nothing thanks",
           "nothing",
-          "nothing right now"
+          "nothing right now",
+          "that's all",
+          "thats it",
+          "that will be all",
+          "That's great"
         ]
       },
       {
@@ -1511,7 +1547,9 @@ By Liz Myers*/
           "what country has calling code {dialingCode}",
           "which country has {dialingCode}",
           "which country has dialing code {dialingCode}",
-          "which country has country code {dialingCode}"
+          "which country has country code {dialingCode}",
+          "which country has the dialing code {dialingCode}",
+          "which country has the country code {dialingCode}"
         ],
         "slots": [
           {
@@ -1523,21 +1561,27 @@ By Liz Myers*/
       {
         "name": "getFullPrefixIntent",
         "samples": [
-          "{toCountry} do I call {toCountry}",
-          "I want to call {toCountry}",
-          "Show me how to call {toCountry}",
-          "Tell me how to call {toCountry}",
-          "How do I call {toCountry}",
-          "how to call {toCountry}",
-          "how do i call {toCountry} from {fromCountry}",
           "how to call {toCountry} from {fromCountry}",
+          "how do I call {toCountry}",
+          "how to call {toCountry}",
+          "how to dial {toCountry}",
+          "how do I dial {toCountry}",
+          "how do I dial {toCountry} from {fromCountry}",
           "how to dial {toCountry} from {fromCountry}",
-          "how to dial {toCountry}"
+          "how to phone {toCountry} from {fromCountry}",
+          "how to phone {toCountry}",
+          "how do I phone {toCountry}",
+          "how do I phone {toCountry} from {fromCountry}"
         ],
         "slots": [
           {
             "name": "fromCountry",
-            "type": "LIST_OF_COUNTRIES"
+            "type": "LIST_OF_COUNTRIES",
+            "samples": [
+              "{fromCountry}",
+              "I'm calling from {fromCountry}",
+              "from {fromCountry}"
+            ]
           },
           {
             "name": "toCountry",
@@ -1555,23 +1599,6 @@ By Liz Myers*/
         {
           "type": "PlainText",
           "value": "Where are you calling from?"
-        },
-        {
-          "type": "PlainText",
-          "value": "Are you calling from North America?"
-        }
-      ]
-    },
-    {
-      "id": "Confirm.Intent-getFullPrefixIntent.IntentSlot-fromCountry",
-      "variations": [
-        {
-          "type": "PlainText",
-          "value": "I see you're calling from {fromCountry}, is that right?"
-        },
-        {
-          "type": "PlainText",
-          "value": "and you're calling from {fromCountry}, is that correct?"
         }
       ]
     }
@@ -1587,10 +1614,9 @@ By Liz Myers*/
             "name": "fromCountry",
             "type": "LIST_OF_COUNTRIES",
             "elicitationRequired": true,
-            "confirmationRequired": true,
+            "confirmationRequired": false,
             "prompts": {
-              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry",
-              "confirmation": "Confirm.Intent-getFullPrefixIntent.IntentSlot-fromCountry"
+              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry"
             }
           },
           {
