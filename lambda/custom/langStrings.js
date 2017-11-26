@@ -60,11 +60,11 @@ module.exports = {
                 "something went wrong, please try that again.",
                 "something went wrong. Are you using a valid country name?",
                 "I couldn\'t find anything for that, please try again.",
-                "I'm stuck, please make sure you\'re using a valid country name.",
-                "this looks wrong, please check the info you\'re giving me.",
+                "I'm stuck, please make sure you\'re using a valid country name and try again.",
+                "this looks wrong, please check the info you\'re giving me and try again.",
                 "that didn\'t work, please try again.",
                 "something went wrong, please try that again.",
-                "I couldn\'t find the info. Are you using a valid country name? Proper dialing codes?",
+                "I couldn\'t find the info. Please try that again.",
               ],
               HELP : [
                 "You can say things like:"

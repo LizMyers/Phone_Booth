@@ -98,14 +98,16 @@ var handlers = {
         myNeuCountry = "seychelles";
     } else if (toCountry === 'hungry' || toCountry === 'Hungry') {
         myNeuCountry = "hungary";
+    } else if (toCountry === 'kaz extant' || toCountry === 'kozik stand'){
+        myNeuCountry = "Kazakhstan";
     } else if (toCountry === 'North Korea'){
         myNeuCountry = "Korea (Democratic People's Republic Of)";
     } else if (toCountry === 'South Korea'){
         myNeuCountry = "Korea (Republic Of)";
     } else if (toCountry === 'Korea'){
-        myNeuCountry = 'Korea (Republic Of)'
-    } else if (toCountry === 'The Solomon Islands' || toCountry === 'The Soloman Islands' || toCountry === 'Soloman Islands' || toCountry === 'Solomon Islands'){
-        myNeuCountry = "Solomon Islands";
+        myNeuCountry = 'Korea (Republic Of)';
+    } else if (toCountry === 'the solomon islands' || toCountry === 'the soloman islands' || toCountry === 'Soloman Islands' || toCountry === 'Solomon Islands' || toCountry === 'the Solomon islands'){
+        myNeuCountry = "solomon islands";
     } else {
         myNeuCountry = toCountry;
     }
@@ -114,7 +116,7 @@ var handlers = {
               console.log("sent     : " + myNeuCountry);
               console.log("received : " + myCodes.myPlaceCode + ", +" + myCodes.myDialingCode );
 
-              if (myCodes.myDialingCode === "" || myCodes.myDialingCode === undefined) {
+              if (myNeuCountry === "" || myNeuCountry === undefined) {
                   this.emit(':ask', randomErrorMessage, reprompt01);
               } else {
                 myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
@@ -145,28 +147,28 @@ var handlers = {
                 switch(locale) {
                   case 'en-US':
                   case 'en-CA':
-                      var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + ". </say-as>" + extroAudio;
+                      var response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>." + extroAudio;
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
-                      + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode
+                      + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                       this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
                   case 'en-GB':
                   case 'en-IN':
-                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + ". </say-as>" + extroAudio;;
+                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as>" + extroAudio;
                       desc = "LANDLINE: 00 " + myCodes.myDialingCode + " \n MOBILE: +" + myCodes.myDialingCode
                       + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                       this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
                   case 'de-DE':
-                      response01 = "Die Landesvorwahl für " + myPrintCountry + " ist" + myCodes.myDialingCode + "." + extroAudio;;
+                      response01 = "Die Landesvorwahl für " + myPrintCountry + " ist" + myCodes.myDialingCode + "." + extroAudio;
                       desc = "FESTNETZ: 00 " + nDialingCode + " \n HANDY: +" + nDialingCode
                       + " \n\n Die Landesvorwahl für " + myPrintCountry + " ist: " + myCodes.myDialingCode + ".";
                       this.emit(':tellWithCard', response01, card.title, card.desc, card.image);
                       break;
                   default:
-                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + ". </say-as> . " + extroAudio;;
+                      response01 = "The dialing code for " + myPrintCountry + " is <say-as interpret-as='digits'> " + myCodes.myDialingCode + "</say-as> . " + extroAudio;
                       desc = "LANDLINE: 011 " + myCodes.myDialingCode + " \n CELL: +" + myCodes.myDialingCode
-                      + " \n\n The dialing code for " + myPrintCountry + " i " + myCodes.myDialingCode + ".";
+                      + " \n\n The dialing code for " + myPrintCountry + " is " + myCodes.myDialingCode + ".";
                       this.emit(':tellWithCard', response01, card.title, desc, card.image);
                       break;
 
@@ -221,26 +223,26 @@ var handlers = {
             switch(locale) {
                 case 'en-US':
                 case 'en-CA':
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;;
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;
                     desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: " + myDialingCode
                     + " \n\n The country with dialing code " + myDialingCode + ", is " + countryName.myPlaceName + ".";
                     this.emit(':tellWithCard', response02, card.title, desc, card.image);
                     break;
                 case 'en-GB':
                 case 'en-IN':
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;;
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;
                     desc = "LANDLINE: 00 " + myDialingCode + " \n MOBILE: " + myDialingCode
                     + " \n\n The country with dialing code " + myDialingCode + " is " + countryName.myPlaceName + ".";
                     this.emit(':tellWithCard', response02, card.title, desc, card.image);
                     break;
                 case 'de-DE':
-                    response02 = "Das Land mit Vorwahl <say-as interpret-as='digits'> " + myDialingCode + "</say-as> ist: " + placeName + '.' + extroAudio;;
+                    response02 = "Das Land mit Vorwahl <say-as interpret-as='digits'> " + myDialingCode + "</say-as> ist: " + placeName + '.' + extroAudio;
                     desc = "FESTNETZ: 00 " + myDialingCode + " \n HANDY: " + myDialingCode
                     + " \n\n Das Land mit Vorwahl " + myDialingCode + " ist " + countryName.myPlaceName + ".";
                     this.emit(':tellWithCard', responseDE02, card.title, desc, card.image);
                     break;
                 default:
-                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;;
+                    response02 = "The country with dialing code <say-as interpret-as='digits'> " + myDialingCode + "</say-as> is: " + placeName + '.' + extroAudio;
                     desc = "LANDLINE: 011 " + myDialingCode + " \n CELL: " + myDialingCode
                     + " \n\n The country with dialing code " + myDialingCode + " is " + countryName.myPlaceName + ".";
                     this.emit(':tellWithCard', response02, card.title, desc, card.image);
@@ -312,7 +314,18 @@ var handlers = {
             myNeuCountry = "seychelles";
         } else if (toCountry === 'hungry' || toCountry === 'Hungry') {
             myNeuCountry = "hungary";
-        } else {
+        } else if (toCountry === 'Kozik Stand' || toCountry === 'Kaz Extant') {
+            myNeuCountry = 'Kazakhstan';
+        } else if (toCountry === 'North Korea'){
+            myNeuCountry = "Korea (Democratic People's Republic Of)";
+        } else if (toCountry === 'South Korea'){
+            myNeuCountry = "Korea (Republic Of)";
+        } else if (toCountry === 'Korea'){ //if vague, assume so. Korea
+            myNeuCountry = 'Korea (Republic Of)';
+        } else if (toCountry === 'the Solomon islands' || toCountry === 'the soloman islands' || toCountry === 'Soloman Islands' || toCountry === 'Solomon Islands' || toCountry === 'the Solomon islands'){
+            toCountry = "The Solomon Islands";
+            myNeuCountry = "solomon islands";
+      } else {
             myNeuCountry = toCountry;
         }
 
@@ -323,15 +336,21 @@ var handlers = {
               this.attributes.fromCountry = fromCountry;
               console.log("LINE 305: ATTRIBUTES fromCountry: " + fromCountry);
 
-              if (myCodes.myDialingCode === '' || myCodes.myDialingCode === undefined) {
+              if (myNeuCountry === '' || myNeuCountry === undefined) {
                   //undefined dialingCode means toCountry didn't match valid country slot
                   this.emit(':ask', randomErrorMessage, reprompt03);
-              } else if (myCodes.myPlaceCode === 'kz'){
-                myCodes.myDialingCode = '76 or 77';
+              } else if (myNeuCountry === "the Solomon islands") {
+                  myPrintCountry = 'The Solomon Islands';
               } else {
                     myPrintCountry = toTitleCase(myNeuCountry);
                     if (myPrintCountry === 'Usa'){
                       myPrintCountry = 'USA';
+                    }
+                    if (myPrintCountry === "Korea (Democratic People's Republic Of)"){
+                        myPrintCountry = 'North Korea';
+                    }
+                    if (myPrintCountry === "Korea (Republic Of)"){
+                        myPrintCountry = 'South Korea';
                     }
                     var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
                     var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
