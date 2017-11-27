@@ -5,7 +5,7 @@ Copyright 2017 Voice By Design Group
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------
-  version 1.03 SUNDAY 11:49
+  version 1.04 MONDAY 15:51
 -------------------------------
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,10 +84,6 @@ var handlers = {
     var toCountry = this.event.request.intent.slots.toCountry.value;
     console.log("LINE86: TO_COUNTRY:" + toCountry);
 
-    //HOW DO I CALL Germany
-    var mySlotCheck = resolveCanonical(toCountry);
-    console.log("LINE 86: mySlotCHECK: " + mySlotCheck);
-
     if (toCountry === 'England'|| toCountry === 'Scotland'|| toCountry === 'Wailes' || toCountry === 'whales' || toCountry === 'U.K.' || toCountry === 'The UK') {
         myNeuCountry = "great britain";
     } else if (toCountry === "vatican city") {
@@ -108,6 +104,8 @@ var handlers = {
         myNeuCountry = 'Korea (Republic Of)';
     } else if (toCountry === 'the solomon islands' || toCountry === 'the soloman islands' || toCountry === 'Soloman Islands' || toCountry === 'Solomon Islands' || toCountry === 'the Solomon islands'){
         myNeuCountry = "solomon islands";
+    } else if (toCountry === undefined){
+        this.emit(':ask', randomErrorMessage, reprompt01);
     } else {
         myNeuCountry = toCountry;
     }
@@ -116,11 +114,12 @@ var handlers = {
               console.log("sent     : " + myNeuCountry);
               console.log("received : " + myCodes.myPlaceCode + ", +" + myCodes.myDialingCode );
 
-              if (myNeuCountry === "" || myNeuCountry === undefined) {
+              if (myNeuCountry === " " || myNeuCountry === undefined) {
                   this.emit(':ask', randomErrorMessage, reprompt01);
               } else {
                 myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
                 console.log("MY_PRINT_COUNTRY:" + myPrintCountry);
+
                 if(myPrintCountry === 'Usa'){
                    myPrintCountry = 'USA';
                 }
@@ -325,7 +324,9 @@ var handlers = {
         } else if (toCountry === 'the Solomon islands' || toCountry === 'the soloman islands' || toCountry === 'Soloman Islands' || toCountry === 'Solomon Islands' || toCountry === 'the Solomon islands'){
             toCountry = "The Solomon Islands";
             myNeuCountry = "solomon islands";
-      } else {
+        }else if (toCountry === undefined){
+          this.emit(':ask', randomErrorMessage, reprompt03);
+        } else {
             myNeuCountry = toCountry;
         }
 
@@ -380,7 +381,7 @@ var handlers = {
                             + "</prosody></say-as>. Check your device for these details and more." + extroAudio;
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
                             + " \n\n When calling from " + callingFrom + ", first dial the international prefix: " + intprefix
-                            + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
+                            + ", followed by the country code: " + nDialingCode + " for " + myPrintCountry + ".";
                             this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                         case 'en-GB':
@@ -392,7 +393,7 @@ var handlers = {
                             + "</prosody></say-as>. Check your device for these details and more." + extroAudio;
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n MOBILE: +" + nDialingCode
                             + " \n\n When calling from "+callingFrom+", first dial the international prefix: " + intprefix
-                            + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
+                            + ", followed by the country code: " + nDialingCode + " for " + myPrintCountry + ".";
                             this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                         case 'de-DE':
@@ -401,7 +402,7 @@ var handlers = {
                             + "<say-as interpret-as='digits'>" + intprefix + "</say-as> und dann" + prettyCode + " für " + nCountryName + ". Nochmal, das lautet <say-as interpret-as ='digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Ich habe diese Detaillen und mehr an Deinem app geschickt."  + extroAudio;
                             desc = "FESTNETZ:  " + intprefix + " " + nDialingCode + " \n HANDY: +" + nDialingCode
                             + " \n\n Aus " + callingFrom + ", wähle zuerst: " + intprefix
-                            + ", und dann die Landesvorwahl: " + nDialingCode + " für " + toCountry + ".";
+                            + ", und dann die Landesvorwahl: " + nDialingCode + " für " + myPrintCountry + ".";
                             this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                         default:
@@ -411,7 +412,7 @@ var handlers = {
                             + "the international prefix, followed by the country code " + prettyCode + " for " + nCountryName + ". Again, that\'s <say-as interpret-as = 'digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Check your device for these details and more." + extroAudio;
                             desc = "LANDLINE:  " + intprefix + " " + nDialingCode + " \n CELL: +" + nDialingCode
                             + " \n\n When calling from " + callingFrom + ", first dial the international prefix: " + intprefix
-                            + ", followed by the country code: " + nDialingCode + " for " + toCountry + ".";
+                            + ", followed by the country code: " + nDialingCode + " for " + myPrintCountry + ".";
                             this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                           }//end switch
