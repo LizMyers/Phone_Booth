@@ -362,10 +362,10 @@ module.exports = {
               "<say-as interpret-as='interjection'>Halt, </say-as>",
               "<say-as interpret-as='interjection'>Oh Mann, </say-as>",
               "<say-as interpret-as='interjection'>Oh Nein, </say-as>",
-              "<say-as interpret-as='interjection'>Puh</say-as>",
+              "<say-as interpret-as='interjection'>Puh </say-as>",
               "<say-as interpret-as='interjection'>Schade, </say-as>",
               "<say-as interpret-as='interjection'>Tja, </say-as>",
-              "Oh je",
+              "Oh je ",
             ],
             ERRMSG : [
               "etwas ist schief gelaufen, probiere\'s noch mal.",

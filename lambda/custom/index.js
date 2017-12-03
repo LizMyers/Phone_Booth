@@ -5,7 +5,7 @@ Copyright 2017 Voice By Design Group
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------
-  version 1.04 THURSDAY 19:13
+  version 1.05 SONNTAG 10:37
 -------------------------------
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ var handlers = {
             } else if (myNeuCountry === " " || myNeuCountry === undefined) {
                 this.emit(':ask', randomErrorMessage, reprompt01);
             } else {
-              myPrintCountry = myPrintCountry = toTitleCase(myNeuCountry);
+              myPrintCountry = toTitleCase(myNeuCountry);
               console.log("MY_PRINT_COUNTRY:" + myPrintCountry);
 
               if(myPrintCountry === 'Usa'){
@@ -140,7 +140,23 @@ var handlers = {
                   console.log("MY_PRINT_COUNTRY:" + myPrintCountry);
               }
               if (locale === 'de-DE') {
-                var myCardTitle = toTitleCase(toCountry) + ' ' + '+' + myCodes.myDialingCode;
+                  switch (toCountry) {
+                    case 'österreich':
+                      var myCardTitle = 'Österreich' + ' ' + '+' + myCodes.myDialingCode;
+                      myPrintCountry = 'Österreich';
+                      break;
+                    case 'ägypten':
+                      var myCardTitle = 'Ägypten' + ' ' + '+' + myCodes.myDialingCode;
+                      myPrintCountry = 'Ägypten';
+                      break;
+                    case 'äthiopien':
+                      var myCardTitle = 'Äthiopien' + ' ' + '+' + myCodes.myDialingCode;
+                      myPrintCountry = 'Äthiopien';
+                      break;
+                    default:
+                      var myCardTitle = toTitleCase(toCountry) + ' ' + '+' + myCodes.myDialingCode;
+                      myPrintCountry = toTitleCase(toCountry);
+                  }
               } else {
                 var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
               }
@@ -175,7 +191,7 @@ var handlers = {
                 case 'de-DE':
                     response01 = "Die Landesvorwahl für " + toTitleCase(toCountry) + " ist <say-as interpret-as='digits'>" + myCodes.myDialingCode + "</say-as> ." + extroAudio;
                     desc = "FESTNETZ: 00 " + myCodes.myDialingCode + " \n HANDY: +" + myCodes.myDialingCode
-                    + " \n\n Die Landesvorwahl für " + toTitleCase(toCountry) + " ist: " + myCodes.myDialingCode + ".";
+                    + " \n\n Die Landesvorwahl für " + myPrintCountry + " ist: " + myCodes.myDialingCode + ".";
                     this.emit(':tellWithCard', response01, card.title, desc, card.image);
                     break;
                 default:
@@ -221,8 +237,24 @@ var handlers = {
                 console.log("deCountryKeys: " + deCountryKeys);
                 var deCountry = deCountryKeys[val];
                 console.log("GERMAN COUNTRY: " + deCountry);
-                var myCardTitle = toTitleCase(deCountry) + ' ' + '+' + myDialingCode;
-                var placeName = toTitleCase(deCountry);
+                switch(deCountry){
+                  case 'österreich':
+                    var myCardTitle = 'Österreich' + ' ' + '+' + myDialingCode;
+                    var placeName = 'Österreich';
+                    break;
+                  case 'ägypten':
+                    var myCardTitle = 'Ägypten' + ' ' + '+' + myDialingCode;
+                    var placeName = 'Ägypten';
+                    break;
+                  case 'äthiopien':
+                    var myCardTitle = 'Äthiopien' + ' ' + '+' + myDialingCode;
+                    var placeName = 'Äthiopien';
+                    break;
+                  default:
+                    var myCardTitle = toTitleCase(deCountry) + ' ' + '+' + myDialingCode;
+                    var placeName = toTitleCase(deCountry);
+                }
+
               } else {
                 var myCardTitle = toTitleCase(countryName.myPlaceName) + ' ' + '+' + myDialingCode;
                 var placeName = toTitleCase(countryName.myPlaceName);
@@ -318,8 +350,6 @@ var handlers = {
         //ASSUMING USER IS IN A COUNTRY WHERE ALEXA DEVICES ARE AVAILABLE
         //EDGE CASE = USER HAS IMPORTED THEIR OWN DEVICE
 
-        console.log ("LINE 272: FROM COUNTRY= "+fromCountry);
-
         if(fromCountry === 'America' || fromCountry === 'Canada' || fromCountry === 'the United States' || fromCountry === 'the US' || fromCountry === 'the USA' || fromCountry ==='US' || fromCountry === 'USA' || fromCountry === 'North America' || fromCountry === 'the states' || fromCountry === 'the united states') {
           intprefix = '011';
         } else if (fromCountry === 'Japan' || fromCountry === 'japan'){
@@ -332,12 +362,11 @@ var handlers = {
           fromCountry === toTitleCase(fromCountry);
         }
 
+
         if(locale === 'de-DE') {//translate german country names into english for api call to work
           myNeuCountry = deNames[toCountry];
           console.log("322 MY_NEU_COUNTRY " + myNeuCountry);
-        } else
-        //clean up toCountry name
-        if (toCountry === 'England'|| toCountry === 'Scotland'|| toCountry === 'Wailes' || toCountry === 'whales' || toCountry === 'U.K.' || toCountry === 'The UK') {
+        } else if (toCountry === 'England'|| toCountry === 'Scotland'|| toCountry === 'Wailes' || toCountry === 'whales' || toCountry === 'U.K.' || toCountry === 'The UK') {
             myNeuCountry = "great britain";
         } else if (toCountry === "vatican city") {
             myNeuCountry = "the vatican";
@@ -358,7 +387,7 @@ var handlers = {
         } else if (toCountry === 'the Solomon islands' || toCountry === 'the soloman islands' || toCountry === 'Soloman Islands' || toCountry === 'Solomon Islands' || toCountry === 'the Solomon islands'){
             toCountry = "The Solomon Islands";
             myNeuCountry = "solomon islands";
-        }else if (toCountry === undefined){
+        } else if (toCountry === undefined){
           this.emit(':ask', randomErrorMessage, reprompt03);
         } else {
             myNeuCountry = toCountry;
@@ -368,6 +397,9 @@ var handlers = {
               console.log("sent     : " + myNeuCountry);
               console.log("received : " + myCodes.myPlaceCode + ", +" + myCodes.myDialingCode );
 
+              var locale = this.event.request.locale;
+              console.log("401: locale= "+locale);
+
               if(myCodes.myDialingCode ===undefined){
                 this.emit(':ask', randomErrorMessage, reprompt03);
               }
@@ -376,7 +408,6 @@ var handlers = {
               console.log("LINE 305: ATTRIBUTES fromCountry: " + fromCountry);
 
               if (myNeuCountry === '' || myNeuCountry === undefined) {
-                  //undefined dialingCode means toCountry didn't match valid country slot
                   this.emit(':ask', randomErrorMessage, reprompt03);
               } else if (myNeuCountry === "the Solomon islands") {
                   myPrintCountry = 'The Solomon Islands';
@@ -391,27 +422,54 @@ var handlers = {
                     if (myPrintCountry === "Korea (Republic Of)"){
                         myPrintCountry = 'South Korea';
                     }
-                    if (locale==='de-DE'){
-                      var myCardTitle = toTitleCase(toCountry) + ' ' + '+' + myCodes.myDialingCode;
-                    } else {
-                      var myCardTitle = myPrintCountry + ' ' + '+' + myCodes.myDialingCode;
-                    }
+
+                    var nDialingCode = myCodes.myDialingCode;
+                    var nCountryName = toTitleCase(toCountry);
+                    var callingFrom = toTitleCase(fromCountry);
                     var smImgUrl = 'https://s3.amazonaws.com/world-flags-small/' + myCodes.myPlaceCode +'.png';
                     var lgImgUrl = 'https://s3.amazonaws.com/world-flags-large/' + myCodes.myPlaceCode +'.png';
                     var card = {
                         'type' : 'Standard',
-                        'title' : myCardTitle,
+                        'title' : nCountryName + ' ' + '+' + myCodes.myDialingCode,
                         'desc' : ' ',
                         'image' : {
                             'smallImageUrl' : smImgUrl,
                             'largeImageUrl' : lgImgUrl
                         }
-                    };
+                      };
 
-                    var nCountryName = myPrintCountry;
-                    var nDialingCode = myCodes.myDialingCode;
-                    var nPlaceCode = myCodes.myPlaceCode;
-                    var callingFrom = toTitleCase(fromCountry);
+                      if(locale==='de-DE'){
+                            switch(fromCountry){
+                              case 'österreich':
+                                callingFrom = 'Österreich';
+                                break;
+                              case 'ägypten':
+                                callingFrom = 'Ägypten';
+                                break;
+                              case 'äthiopien':
+                                callingFrom = 'Äthiopien';
+                                break;
+                              default:
+                                callingFrom = toTitleCase(fromCountry);
+                            }//fromCountry
+                            switch(toCountry){
+                              case 'österreich':
+                                nCountryName = 'Österreich';
+                                card.title = nCountryName + ' ' + '+' + myCodes.myDialingCode;
+                                break;
+                              case 'ägypten':
+                                nCountryName = 'Ägypten';
+                                card.title = nCountryName + ' ' + '+' + myCodes.myDialingCode;
+                                break;
+                              case 'äthiopien':
+                                nCountryName = 'Äthiopien';
+                                card.title = nCountryName + ' ' + '+' + myCodes.myDialingCode;
+                                break;
+                              default:
+                                nCountryName = toTitleCase(toCountry);
+                                card.title = nCountryName + ' ' + '+' + myCodes.myDialingCode;
+                              }//toCountry
+                            }//if de-DE
 
                     switch(locale) {
                         case 'en-US':
@@ -441,11 +499,11 @@ var handlers = {
                             break;
                         case 'de-DE':
                             prettyCode = "<say-as interpret-as='digits'>" + nDialingCode + "</say-as>";
-                            response03 = "Von " + toTitleCase(fromCountry) + " wähle zuerst: "
-                            + "<say-as interpret-as='digits'>" + intprefix + "</say-as> und dann" + prettyCode + " für " + toTitleCase(toCountry) + ". Nochmal, das lautet <say-as interpret-as ='digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Ich habe diese Detaillen und mehr an Deinem app geschickt."  + extroAudio;
+                            response03 = "Von " + fromCountry + " wähle zuerst: "
+                            + "<say-as interpret-as='digits'>" + intprefix + "</say-as> und dann" + prettyCode + " für " + nCountryName + ". Nochmal, das lautet <say-as interpret-as ='digits'><prosody rate='slow'>" + intprefix + prettyCode + "</prosody></say-as>. Ich habe diese Detaillen und mehr an Deinem app geschickt."  + extroAudio;
                             desc = "FESTNETZ:  " + intprefix + " " + nDialingCode + " \n HANDY: +" + nDialingCode
                             + " \n\n Aus " + callingFrom + ", wähle zuerst: " + intprefix
-                            + ", und dann die Landesvorwahl: " + nDialingCode + " für " + toTitleCase(toCountry) + ".";
+                            + ", und dann die Landesvorwahl: " + nDialingCode + " für " + nCountryName + ".";
                             this.emit(':tellWithCard', response03, card.title, desc, card.image);
                             break;
                         default:
@@ -457,14 +515,13 @@ var handlers = {
                             + " \n\n When calling from " + callingFrom + ", first dial the international prefix: " + intprefix
                             + ", followed by the country code: " + nDialingCode + " for " + myPrintCountry + ".";
                             this.emit(':tellWithCard', response03, card.title, desc, card.image);
-                            break;
                           }//end switch
 
                         }//end if dialingCode undefined
 
-                    });//end https
+              });//end https
 
-              }//end if fromCountry undefined
+          }//if fromCountry undefined
 
     },//end getFullPrefixIntent
 

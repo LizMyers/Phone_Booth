@@ -1558,7 +1558,8 @@
           "what country has calling code {dialingCode}",
           "which country has {dialingCode}",
           "which country has dialing code {dialingCode}",
-          "which country has country code {dialingCode}"
+          "which country has country code {dialingCode}",
+          "which country has the dialing code {dialingCode}"
         ],
         "slots": [
           {
@@ -1570,34 +1571,37 @@
       {
         "name": "getFullPrefixIntent",
         "samples": [
-          "how to call {toCountry} from {fromCountry}"
+          "how to call {toCountry} from {fromCountry}",
+          "how do I call {toCountry} from {fromCountry}",
+          "how to call {toCountry}",
+          "how do I call {toCountry}"
         ],
         "slots": [
           {
             "name": "fromCountry",
-            "type": "LIST_OF_COUNTRIES",
-            "samples": [
-              "{fromCountry}",
-              "I'm calling from {fromCountry}",
-              "from {fromCountry}"
-            ]
+            "type": "LIST_OF_COUNTRIES"
           },
           {
             "name": "toCountry",
-            "type": "LIST_OF_COUNTRIES"
+            "type": "LIST_OF_COUNTRIES",
+            "samples": [
+              "I'm trying to call {toCountry}",
+              "{toCountry}",
+              "I want to call {toCountry}"
+            ]
           }
         ]
       }
     ],
-    "invocationName": "phone booth"
+    "invocationName": "phone box"
   },
   "prompts": [
     {
-      "id": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry",
+      "id": "Elicit.Intent-getFullPrefixIntent.IntentSlot-toCountry",
       "variations": [
         {
           "type": "PlainText",
-          "value": "Where are you calling from?"
+          "value": "Sorry, I didn't catch the country name. Where are you trying to call?"
         }
       ]
     }
@@ -1612,18 +1616,18 @@
           {
             "name": "fromCountry",
             "type": "LIST_OF_COUNTRIES",
-            "elicitationRequired": true,
+            "elicitationRequired": false,
             "confirmationRequired": false,
-            "prompts": {
-              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry"
-            }
+            "prompts": {}
           },
           {
             "name": "toCountry",
             "type": "LIST_OF_COUNTRIES",
-            "elicitationRequired": false,
+            "elicitationRequired": true,
             "confirmationRequired": false,
-            "prompts": {}
+            "prompts": {
+              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-toCountry"
+            }
           }
         ]
       }

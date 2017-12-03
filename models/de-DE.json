@@ -1452,9 +1452,18 @@
         "samples": [
           "weißt du woher die Vorwahl {dialingCode} kommt",
           "woher kommt {dialingCode}",
-          "welchem Land gehört {dialingCode}",
+          "zu welchem Land gehört {dialingCode}",
           "kennst du die vorwahl {dialingCode}",
-          "erkennst du {dialingCode}"
+          "erkennst du {dialingCode}",
+          "erkennst du die Landesvorwahl {dialingCode}",
+          "erkennst du die Vorwahl {dialingCode}",
+          "kennst du {dialingCode}",
+          "kennst du die Landesvorwahl {dialingCode}",
+          "weißt du woher die Landesvorwahl {dialingCode} kommt",
+          "weißt du zu welchem Land {dialingCode} gehört",
+          "weißt du welches Land hat die Vorwahl {dialingCode}",
+          "weißt du {dialingCode}",
+          "erzähle mir von {dialingCode}"
         ],
         "slots": [
           {
@@ -1481,11 +1490,53 @@
           },
           {
             "name": "toCountry",
-            "type": "LIST_OF_COUNTRIES_DE"
+            "type": "LIST_OF_COUNTRIES_DE",
+            "samples": [
+              "{toCountry}",
+              "Ich möchte {toCountry} anrufen"
+            ]
           }
         ]
       }
     ],
     "invocationName": "telefonzelle"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-getFullPrefixIntent.IntentSlot-toCountry",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Leider habe ich das nicht verstanden. Welches Land möchtest du anrufen?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "getFullPrefixIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "fromCountry",
+            "type": "LIST_OF_COUNTRIES_DE",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "toCountry",
+            "type": "LIST_OF_COUNTRIES_DE",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-toCountry"
+            }
+          }
+        ]
+      }
+    ]
   }
 }

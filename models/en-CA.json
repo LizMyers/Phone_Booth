@@ -1517,7 +1517,8 @@
           "what is the country code for {toCountry}",
           "what the dialing code for {toCountry} is",
           "what the country code for {toCountry} is",
-          "what the prefix for {toCountry} is"
+          "what the prefix for {toCountry} is",
+          "get the country code for {toCountry}"
         ],
         "slots": [
           {
@@ -1558,7 +1559,9 @@
           "what country has calling code {dialingCode}",
           "which country has {dialingCode}",
           "which country has dialing code {dialingCode}",
-          "which country has country code {dialingCode}"
+          "which country has country code {dialingCode}",
+          "which country has the dialing code {dialingCode}",
+          "which country has the country code {dialingCode}"
         ],
         "slots": [
           {
@@ -1570,21 +1573,27 @@
       {
         "name": "getFullPrefixIntent",
         "samples": [
-          "how to call {toCountry} from {fromCountry}"
+          "how to call {toCountry} from {fromCountry}",
+          "how do I call {toCountry}",
+          "how to call {toCountry}",
+          "how do I call {toCountry} from {fromCountry}"
         ],
         "slots": [
           {
             "name": "fromCountry",
-            "type": "LIST_OF_COUNTRIES",
-            "samples": [
-              "{fromCountry}",
-              "I'm calling from {fromCountry}",
-              "from {fromCountry}"
-            ]
+            "type": "LIST_OF_COUNTRIES"
           },
           {
             "name": "toCountry",
-            "type": "LIST_OF_COUNTRIES"
+            "type": "LIST_OF_COUNTRIES",
+            "samples": [
+              "{toCountry}",
+              "I'm calling {toCountry}",
+              "I'm calling someone in {toCountry}",
+              "I'm trying to call {toCountry}",
+              "I want to call {toCountry}",
+              "How do I reach {toCountry}"
+            ]
           }
         ]
       }
@@ -1593,11 +1602,11 @@
   },
   "prompts": [
     {
-      "id": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry",
+      "id": "Elicit.Intent-getFullPrefixIntent.IntentSlot-toCountry",
       "variations": [
         {
           "type": "PlainText",
-          "value": "Where are you calling from?"
+          "value": "Sorry, I didn't catch the country name. Where are you calling?"
         }
       ]
     }
@@ -1612,18 +1621,18 @@
           {
             "name": "fromCountry",
             "type": "LIST_OF_COUNTRIES",
-            "elicitationRequired": true,
+            "elicitationRequired": false,
             "confirmationRequired": false,
-            "prompts": {
-              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-fromCountry"
-            }
+            "prompts": {}
           },
           {
             "name": "toCountry",
             "type": "LIST_OF_COUNTRIES",
-            "elicitationRequired": false,
+            "elicitationRequired": true,
             "confirmationRequired": false,
-            "prompts": {}
+            "prompts": {
+              "elicitation": "Elicit.Intent-getFullPrefixIntent.IntentSlot-toCountry"
+            }
           }
         ]
       }
